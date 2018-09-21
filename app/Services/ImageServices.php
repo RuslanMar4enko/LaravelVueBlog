@@ -16,8 +16,8 @@ class ImageServices
 
     public function multiplyImage($images)
     {
-        for($i = 0; $i < count($images); $i++){
-            $this->nameImage($images[$i]);
+        for($i = 0; $i < sizeof($images); $i++){
+            $this->nameImage($images[$i]); //TODO method not is valid
         }
     }
 

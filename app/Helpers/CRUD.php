@@ -7,32 +7,32 @@ use App\Services\ImageServices;
 class CRUD
 {
 
-    public function index($model, $pageSize = 10){
+    public function index($model, $pageSize = 10)
+    {
 
-       return response()->json($model->latest()->paginate($pageSize));
+        return response()->json($model->latest()->paginate($pageSize));
     }
 
 
     public function store($model, $request, ImageServices $imageServices)
     {
-        if($request){
-            try{
-                if($request->file('image')){
-                  $image = $imageServices->nameImage($request->file('image'));
-                  $request->image = $image;
-                }
-                return response()->json($model->create($request->all()));
-            }catch (\Exception $exception){
-                return response()->json($exception->getMessage(), 406);
+        try {
+
+            if ($request->file('image')) {
+                $image = $imageServices->nameImage($request->file('image'));
+                $request->image = $image;
             }
 
-        }else{
-            return response()->json(['errors'=> [
-                'request'      => ['Request is null']
-            ]], 406);
+            return response()->json($model->create($request->all()));
+
+        } catch (\Exception $exception) {
+
+            return response()->json($exception->getMessage(), 406);
 
         }
+
     }
+
 
     public function update($model, $request = null, $id)
     {
