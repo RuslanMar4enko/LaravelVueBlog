@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Services\ImageServices;
+
 class CRUD
 {
 
@@ -11,9 +13,25 @@ class CRUD
     }
 
 
-    public function store($model, $request = null)
+    public function store($model, $request, ImageServices $imageServices)
     {
+        if($request){
+            try{
+                if($request->file('image')){
+                  $image = $imageServices->nameImage($request->file('image'));
+                  $request->image = $image;
+                }
+                return response()->json($model->create($request->all()));
+            }catch (\Exception $exception){
+                return response()->json($exception->getMessage(), 406);
+            }
 
+        }else{
+            return response()->json(['errors'=> [
+                'request'      => ['Request is null']
+            ]], 406);
+
+        }
     }
 
     public function update($model, $request = null, $id)
