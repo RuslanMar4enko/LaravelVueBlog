@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use http\Env\Request;
 use Intervention\Image\Constraint;
 use Image;
 
@@ -14,15 +15,9 @@ class ImageServices
         return $filename;
     }
 
-    public function multiplyImage($images)
-    {
-        for($i = 0; $i < sizeof($images); $i++){
-            $this->nameImage($images[$i]); //TODO method not is valid
-        }
-    }
 
-    public function resizeImage($image, $filename)
+    public function resizeImage($image, $filename, $with = 300, $height = 292)
     {
-        Image::make($image->getRealPath())->fit(300, 292)->save($filename);
+        Image::make($image->getRealPath())->fit($with, $height)->save($filename);
     }
 }
