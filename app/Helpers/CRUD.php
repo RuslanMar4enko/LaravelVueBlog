@@ -11,7 +11,7 @@ class CRUD
         try {
             return response()->json($model->latest()->paginate($pageSize));
         } catch (\Exception $exception) {
-            return response()->json($exception->getMessage(), 406);
+            return response()->json($exception->getMessage(), 422);
         }
 
     }
@@ -20,12 +20,11 @@ class CRUD
     public function store($model, $request)
     {
         try {
-            return response()->json($model->create($request->all()));
+            return $model->create($request->all());
 
         } catch (\Exception $exception) {
-            return response()->json($exception->getMessage(), 406);
+            return response()->json($exception->getMessage(), 422);
         }
-
     }
 
 

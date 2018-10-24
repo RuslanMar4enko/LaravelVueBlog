@@ -21,10 +21,9 @@ class JwtAuthController extends Controller
 
     public function register(RegisterFormRequest $request, User $user)
     {
-        $request->password= Hash::make($request->password);
-        CRUD::store($user, $request);
+        $request->merge(['password' => Hash::make($request->password)]);
+        return ['data' => CRUD::store($user, $request)];
     }
-
 
 
     public function login(Request $request)
@@ -39,7 +38,7 @@ class JwtAuthController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        return response()->json(compact('token'));
+        return ['token' => $token];
     }
 
     public function getUser()
