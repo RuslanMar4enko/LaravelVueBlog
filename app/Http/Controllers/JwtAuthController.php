@@ -22,7 +22,7 @@ class JwtAuthController extends Controller
     public function register(RegisterFormRequest $request, User $user)
     {
         $request->merge(['password' => Hash::make($request->password)]);
-        return ['data' => CRUD::store($user, $request)];
+        return response()->json(['data' => CRUD::store($user, $request)], 201);
     }
 
 

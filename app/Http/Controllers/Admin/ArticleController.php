@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Facades\CRUD;
 use App\Http\Requests\ArticleRequest;
 use App\Article;
 use App\Http\Requests\ArticleRequestEdit;
 use App\Services\ImageServices;
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {

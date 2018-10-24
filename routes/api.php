@@ -18,8 +18,7 @@ Route::post('/register', 'JwtAuthController@register');
 Route::post('/login', 'JwtAuthController@login');
 Route::get('/login/token', 'JwtAuthController@getUser');
 
-Route::group(['prefix' => 'v1'], function () {
-
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.auth'], function () {
     Route::get('/articles', 'ArticleController@getArticles');
     Route::post('/articles/create', 'ArticleController@postArticle');
 

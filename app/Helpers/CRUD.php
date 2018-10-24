@@ -9,7 +9,7 @@ class CRUD
     public function index($model, $pageSize = 10)
     {
         try {
-            return response()->json($model->latest()->paginate($pageSize));
+            return $model->latest()->paginate($pageSize);
         } catch (\Exception $exception) {
             return response()->json($exception->getMessage(), 422);
         }
