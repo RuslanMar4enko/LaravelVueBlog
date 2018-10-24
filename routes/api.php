@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 */
 
 
+Route::post('/register', 'JwtAuthController@register');
+Route::post('/login', 'JwtAuthController@login');
+Route::get('/login/token', 'JwtAuthController@getUser');
 
 Route::group(['prefix' => 'v1'], function () {
 
