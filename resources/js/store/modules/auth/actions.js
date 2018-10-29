@@ -3,10 +3,10 @@ import auth from '../../../api/Auth'
 import * as types from './mutation-types';
 
 export const login = async ({ commit }) => {
-    const json = await auth.login();
+    const json = await auth.login(commit);
 
     if (json.status === 200){
-        commit(types.login, json.data);
+        commit(types.LOGIN, json.data);
         return json;
     }
 

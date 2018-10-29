@@ -1,7 +1,7 @@
 import * as types from './mutation-types';
 
 export default {
-    [types.login](state, payload) {
+    [types.LOGIN](state, payload) {
         state.token = payload;
     },
 };
