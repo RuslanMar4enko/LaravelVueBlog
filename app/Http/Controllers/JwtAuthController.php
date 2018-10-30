@@ -9,16 +9,25 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Requests\RegisterFormRequest;
 use Symfony\Component\HttpFoundation\Request;
-
+use Auth;
 
 class JwtAuthController extends Controller
 {
+    /**
+     * @param RegisterFormRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterFormRequest $request, User $user)
     {
         $request->merge(['password' => Hash::make($request->password)]);
         return response()->json(['data' => CRUD::store($user, $request)], 201);
     }
 
+    /**
+     * @param Request $request
+     * @return array|\Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -28,37 +37,45 @@ class JwtAuthController extends Controller
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
 
         return ['status' => 'success', 'token' => $token];
     }
 
+    /**
+     * @param Request $request
+     * @return array|\Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
         $token = $request->header('Authorization');
         try {
             return ['status' => JWTAuth::invalidate($token)];
         } catch (JWTException $e) {
-            return response()->json(['error' => 'User successfully logged out'], 500);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
+    /**
+     * @return array
+     */
     public function refresh()
     {
-        try {
-            $token = JWTAuth::refresh();
-            return response()->json(['refresh-token' => $token], 200);
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'User refresh not token'], 500);
+        try{
+            $newToken = JWTAuth::refresh(JWTAuth::getToken());
+            return ['token' => $newToken];
+        }catch (JWTException $e){
+            return response()->json(['error' => $e->getMessage()], 500);
         }
 
     }
+
 
     public function getUser()
     {
-        $user = JWTAuth::parseToken()->authenticate();
-        return $user;
+        return ['user' => Auth::user()];
+
     }
 
 

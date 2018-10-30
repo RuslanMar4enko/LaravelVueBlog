@@ -17,9 +17,11 @@ use Illuminate\Http\Request;
 
 Route::post('/login', 'JwtAuthController@login');
 
+Route::post('/refresh', 'JwtAuthController@refresh');
+
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('/register', 'JwtAuthController@register');
-    Route::get('/login/token', 'JwtAuthController@getUser');
+    Route::get('/login/user', 'JwtAuthController@getUser');
     Route::get('/logout', 'JwtAuthController@logout');
 });
 
