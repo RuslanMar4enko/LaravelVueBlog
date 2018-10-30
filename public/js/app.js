@@ -25308,6 +25308,7 @@ try {
 window.axios = __webpack_require__(23);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -50213,7 +50214,7 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(77)
 /* template */
 var __vue_template__ = __webpack_require__(50)
 /* template functional */
@@ -50261,20 +50262,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "container" }, [
-        _vm._v("\n        AAAAAAA\n    ")
-      ])
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _vm._v("\n        " + _vm._s(_vm.articleData) + "\n    ")
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -50369,6 +50363,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             password: null
         };
     },
+    mounted: function mounted() {
+        if (localStorage.getItem('token')) {
+            this.$router.push({ name: 'AdminHome' });
+        }
+    },
 
 
     methods: {
@@ -50419,6 +50418,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return login;
         }()
     }
+
 });
 
 /***/ }),
@@ -52250,48 +52250,115 @@ var index_esm = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__actions__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__getters__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mutations__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__state__);
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    actions: __WEBPACK_IMPORTED_MODULE_0__actions___default.a,
-    getters: __WEBPACK_IMPORTED_MODULE_1__getters___default.a,
-    mutations: __WEBPACK_IMPORTED_MODULE_2__mutations___default.a,
-    state: __WEBPACK_IMPORTED_MODULE_3__state___default.a
+    actions: __WEBPACK_IMPORTED_MODULE_0__actions__["a" /* default */],
+    getters: __WEBPACK_IMPORTED_MODULE_1__getters__["a" /* default */],
+    mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* default */],
+    state: __WEBPACK_IMPORTED_MODULE_3__state__["a" /* default */]
 });
 
 /***/ }),
 /* 59 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export getAticles */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Articles__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutation_types__ = __webpack_require__(79);
 
 
+var _this = this;
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+
+var getAticles = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref) {
+        var commit = _ref.commit;
+        var json;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        _context.next = 2;
+                        return __WEBPACK_IMPORTED_MODULE_1__api_Articles__["a" /* default */].getAticles();
+
+                    case 2:
+                        json = _context.sent;
+
+                        if (!(json.status === 200)) {
+                            _context.next = 6;
+                            break;
+                        }
+
+                        commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* ARTICLES */], json.data);
+                        return _context.abrupt('return', json);
+
+                    case 6:
+                        throw json;
+
+                    case 7:
+                    case 'end':
+                        return _context.stop();
+                }
+            }
+        }, _callee, _this);
+    }));
+
+    return function getAticles(_x) {
+        return _ref2.apply(this, arguments);
+    };
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getAticles: getAticles
+});
 
 /***/ }),
 /* 60 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    articles: function articles(state) {
+        return state.articles;
+    }
+});
 
 /***/ }),
 /* 61 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(79);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+
+/* harmony default export */ __webpack_exports__["a"] = (_defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ARTICLES */], function (state, payload) {
+    state.articles = payload;
+}));
 
 /***/ }),
 /* 62 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    articles: null
+});
 
 /***/ }),
 /* 63 */
@@ -52330,8 +52397,6 @@ var _this = this;
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 
-
-// import * as types from './mutation-types';
 
 var signIn = function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(context, payload) {
@@ -52536,6 +52601,95 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    mounted: function mounted() {
+        this.$store.dispatch('getAticles');
+    },
+
+    computed: {
+        articleData: function articleData() {
+            return this.$store.getters.articles;
+        }
+    },
+
+    methods: {}
+
+});
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getAticles: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var data;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return window.axios.get('/api/admin/articles');
+
+                        case 2:
+                            data = _context.sent;
+                            return _context.abrupt('return', data);
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function getAticles() {
+            return _ref.apply(this, arguments);
+        }
+
+        return getAticles;
+    }()
+});
+
+/***/ }),
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ARTICLES; });
+var ARTICLES = 'ARTICLES';
 
 /***/ })
 /******/ ]);

@@ -24,6 +24,13 @@
             }
         },
 
+        mounted()
+        {
+            if(localStorage.getItem('token')){
+                this.$router.push({name: 'AdminHome'});
+            }
+        },
+
         methods: {
             async login() {
                 try {
@@ -42,7 +49,8 @@
                 }
             },
 
-        }
+        },
+
     }
 
 </script>
