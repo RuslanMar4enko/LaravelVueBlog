@@ -34,6 +34,7 @@
                     if (token.data.token) {
                         localStorage.setItem('token', token.data.token)
                         this.$store.commit(types.SIGN_IN, token.data.token)
+                        this.$router.push({name: 'AdminHome'});
                     }
 
                 } catch (e) {

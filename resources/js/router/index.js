@@ -21,6 +21,7 @@ const routes = [
         path: '/admin/home',
         name: 'AdminHome',
         component: AdminHome,
+        meta : { requiresAuth : true }
     },
 
     {
@@ -33,12 +34,27 @@ const routes = [
         path: '/admin/articles',
         name: 'ArticlesPage',
         component: ArticlesPage,
+        meta : { requiresAuth : true }
     },
 ];
 
 const router = new VueRouter({
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if(to.meta.requiresAuth) {
+        if(localStorage.getItem('token')) {
+            next()
+        } else {
+            next({
+                path : '/admin/login'
+            })
+        }
+    } else {
+        next()
+    }
+})
 
 
 export default router;
