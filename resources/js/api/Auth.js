@@ -1,6 +1,6 @@
 export default {
-    async login(data) {
-        let token = await  window.axios.post(data);
+    async signIn(data) {
+        const token = await  window.axios.post('/api/login', data);
         return token;
     }
 }

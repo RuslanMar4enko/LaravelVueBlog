@@ -1,14 +1,18 @@
 import auth from '../../../api/Auth'
 
-import * as types from './mutation-types';
+// import * as types from './mutation-types';
 
-export const login = async ({ commit }) => {
-    const json = await auth.login(commit);
+export const signIn = async (context, payload) => {
+    const json = await auth.signIn(payload);
 
     if (json.status === 200){
-        commit(types.LOGIN, json.data);
         return json;
     }
 
     throw json;
-};
+}
+
+
+export default {
+    signIn,
+}
