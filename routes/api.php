@@ -14,12 +14,16 @@ use Illuminate\Http\Request;
 */
 
 
-Route::post('/register', 'JwtAuthController@register');
+
 Route::post('/login', 'JwtAuthController@login');
-Route::get('/login/token', 'JwtAuthController@getUser');
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('/register', 'JwtAuthController@register');
+    Route::get('/login/token', 'JwtAuthController@getUser');
+    Route::get('/logout', 'JwtAuthController@logout');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.auth'], function () {
     Route::get('/articles', 'ArticleController@getArticles');
     Route::post('/articles/create', 'ArticleController@postArticle');
-
 });
