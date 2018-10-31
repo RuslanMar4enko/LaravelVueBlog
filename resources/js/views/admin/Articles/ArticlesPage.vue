@@ -1,7 +1,25 @@
 <template>
     <div>
-        <div class="container">
-            {{articleData}}
+        <div class="main-admin-top container">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody v-for="item in articles">
+                <tr>
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.title}}</td>
+                    <td>{{item.image}}</td>
+                    <td>{{item.description}}</td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </template>
@@ -12,10 +30,9 @@
     export default {
         data() {
             return {
-
+                articles: null
             }
         },
-
         mounted() {
             this.$store.dispatch('getAticles');
         },
@@ -24,11 +41,10 @@
                 return this.$store.getters.articles;
             },
         },
-
-        methods: {
-
-        }
-
-
+        watch: {
+            articleData(articleData) {
+                this.articles = articleData.data;
+            },
+        },
     }
 </script>

@@ -11,6 +11,9 @@
 //Login
 
 @import "./login";
+@import "./admin/header";
+@import "./admin/articles";
+@import "~font-awesome-scss/scss/font-awesome.scss";
 
 .navbar-laravel {
   background-color: #fff;

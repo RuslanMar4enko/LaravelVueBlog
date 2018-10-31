@@ -13,7 +13,7 @@ class ArticleController extends Controller
 {
     public function getArticles(Article $articles)
     {
-       return ['data' => CRUD::index($articles, 5)];
+       return  CRUD::index($articles, 5);
     }
 
 
@@ -21,7 +21,7 @@ class ArticleController extends Controller
     {
         $imageName = $imageServices->nameImage($request->file('image'));
         $request->image = $imageName;
-        return ['data' => CRUD::store($articles, $request)];
+        return  CRUD::store($articles, $request);
     }
 
     public function editArticle(Article $articles,  ArticleRequestEdit $request, $id, ImageServices $imageServices)
