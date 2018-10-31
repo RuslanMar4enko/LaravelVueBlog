@@ -11,6 +11,10 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+    /**
+     * @param Article $articles
+     * @return mixed
+     */
     public function getArticles(Article $articles)
     {
        return  CRUD::index($articles, 5);

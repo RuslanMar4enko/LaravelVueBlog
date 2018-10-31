@@ -24961,8 +24961,10 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SIGN_IN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SIGN_IN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return REGISTER; });
 var SIGN_IN = 'SIGN_IN';
+var REGISTER = 'REGISTER';
 
 /***/ }),
 /* 15 */
@@ -47346,6 +47348,9 @@ module.exports = function spread(callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_admin_Articles_ArticlesPage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_admin_Articles_ArticlesPage__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_admin_LoginPage__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_admin_LoginPage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_admin_LoginPage__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_admin_CheckInPage__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_admin_CheckInPage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_admin_CheckInPage__);
+
 
 
 
@@ -47368,6 +47373,11 @@ var routes = [{
     path: '/admin/login',
     name: 'AdminLogin',
     component: __WEBPACK_IMPORTED_MODULE_5__views_admin_LoginPage___default.a
+}, {
+    path: '/admin/register',
+    name: 'CheckIn',
+    component: __WEBPACK_IMPORTED_MODULE_6__views_admin_CheckInPage___default.a,
+    meta: { requiresAuth: true }
 }, {
     path: '/admin/articles',
     name: 'ArticlesPage',
@@ -50200,8 +50210,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "container" }, [
-        _vm._v("\n        asdasdasdasdasdasd\n    ")
+      _c("div", { staticClass: "main-admin-top container" }, [
+        _c("h1", [_vm._v("xdfgdfgdfgdfgdfgdfg")])
       ])
     ])
   }
@@ -50295,6 +50305,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50328,6 +50339,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "main-admin-top container" }, [
+      _c("h1", [_vm._v("Add news")]),
+      _vm._v(" "),
       _c(
         "table",
         { staticClass: "table" },
@@ -50360,7 +50373,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
+    return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
         _vm._v(" "),
@@ -50494,7 +50507,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 if (token.data.token) {
                                     localStorage.setItem('token', token.data.token);
-                                    this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["a" /* SIGN_IN */], token.data.token);
+                                    this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["b" /* SIGN_IN */], token.data.token);
                                     location.reload();
                                     this.$router.push({ name: 'AdminHome' });
                                 }
@@ -51397,10 +51410,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * Assign the modules to the store.
      */
     modules: {
-
         articles: __WEBPACK_IMPORTED_MODULE_2__modules_articles__["a" /* default */],
         auth: __WEBPACK_IMPORTED_MODULE_3__modules_auth__["a" /* default */]
-
     }
 }));
 
@@ -52534,14 +52545,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 /* unused harmony export signIn */
+/* unused harmony export register */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Auth__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutation_types__ = __webpack_require__(14);
 
 
 var _this = this;
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 
@@ -52578,6 +52592,37 @@ var signIn = function () {
 
     return function signIn(_x, _x2) {
         return _ref.apply(this, arguments);
+    };
+}();
+
+var register = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(context, payload) {
+        var json;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        _context2.next = 2;
+                        return __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].register(payload);
+
+                    case 2:
+                        json = _context2.sent;
+
+
+                        if (json.status === 200) {
+                            _this.commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* REGISTER */], json.data);
+                        }
+
+                    case 4:
+                    case 'end':
+                        return _context2.stop();
+                }
+            }
+        }, _callee2, _this);
+    }));
+
+    return function register(_x3, _x4) {
+        return _ref2.apply(this, arguments);
     };
 }();
 
@@ -52624,6 +52669,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
 
         return signIn;
+    }(),
+    register: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(data) {
+            var user;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return window.axios.post('/api/register', data);
+
+                        case 2:
+                            user = _context2.sent;
+                            return _context2.abrupt('return', user);
+
+                        case 4:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function register(_x2) {
+            return _ref2.apply(this, arguments);
+        }
+
+        return register;
     }()
 });
 
@@ -52635,6 +52708,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["a"] = ({
     token: function token(state) {
         return state.token;
+    },
+    register: function register(state) {
+        return state.register;
     }
 });
 
@@ -52644,13 +52720,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(14);
+var _types$SIGN_IN$types$;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (_defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* SIGN_IN */], function (state, payload) {
+/* harmony default export */ __webpack_exports__["a"] = (_types$SIGN_IN$types$ = {}, _defineProperty(_types$SIGN_IN$types$, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* SIGN_IN */], function (state, payload) {
     state.token = payload;
-}));
+}), _defineProperty(_types$SIGN_IN$types$, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* REGISTER */], function (state, payload) {
+    state.register = payload;
+}), _types$SIGN_IN$types$);
 
 /***/ }),
 /* 71 */
@@ -52658,7 +52738,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-    token: null
+    token: null,
+    register: null
 });
 
 /***/ }),
@@ -52893,7 +52974,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 3:
                                 localStorage.removeItem('token');
-                                this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["a" /* SIGN_IN */], null);
+                                this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["b" /* SIGN_IN */], null);
                                 this.$router.push({ name: 'AdminHome' });
                                 _context.next = 11;
                                 break;
@@ -52966,11 +53047,20 @@ var render = function() {
           1
         ),
         _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: { name: "CheckIn" } } }, [
+              _c("i", { staticClass: "fa fa-users" }),
+              _c("span", [_vm._v("New admin")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
         _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2),
         _vm._v(" "),
         _c("li", [
           _c("a", { on: { click: _vm.logout } }, [
@@ -52983,17 +53073,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", [
-        _c("i", { staticClass: "fa fa-server" }),
-        _c("span", [_vm._v("Server")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53023,6 +53102,284 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-819e5290", module.exports)
+  }
+}
+
+/***/ }),
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(87)
+/* template */
+var __vue_template__ = __webpack_require__(88)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/views/admin/CheckInPage.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f4662ea6", Component.options)
+  } else {
+    hotAPI.reload("data-v-f4662ea6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            name: null,
+            email: null,
+            password: null
+        };
+    },
+
+
+    methods: {
+        register: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var user;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return this.$store.dispatch('register', {
+                                    name: this.name,
+                                    email: this.email,
+                                    password: this.password
+                                });
+
+                            case 3:
+                                user = _context.sent;
+
+                                console.log(user);
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context['catch'](0);
+
+                                console.log(_context.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 7]]);
+            }));
+
+            function register() {
+                return _ref.apply(this, arguments);
+            }
+
+            return register;
+        }()
+    }
+});
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "main-admin-top container" }, [
+      _c("h1", [_vm._v("New User Registration")]),
+      _vm._v(" "),
+      _c("form", [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+            _vm._v("Name")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "exampleInputName",
+              "aria-describedby": "nameHelp",
+              placeholder: "Enter name"
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+            _vm._v("Email address")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "exampleInputEmail1",
+              "aria-describedby": "emailHelp",
+              placeholder: "Enter email"
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+            _vm._v("Password")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              id: "exampleInputPassword1",
+              placeholder: "Password"
+            },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "button" },
+            on: { click: _vm.register }
+          },
+          [_vm._v("Submit")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f4662ea6", module.exports)
   }
 }
 

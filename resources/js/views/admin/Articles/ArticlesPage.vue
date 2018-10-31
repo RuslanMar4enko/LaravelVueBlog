@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="main-admin-top container">
+            <h1>Add news</h1>
             <table class="table">
-                <thead class="thead-dark">
+                <thead>
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Title</th>

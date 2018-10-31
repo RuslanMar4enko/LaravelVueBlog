@@ -13,9 +13,7 @@ export default new Vuex.Store({
      * Assign the modules to the store.
      */
     modules: {
-
         articles,
         auth
-
     },
 });

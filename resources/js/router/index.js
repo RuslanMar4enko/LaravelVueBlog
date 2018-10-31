@@ -4,6 +4,7 @@ import Home from '../views/Home';
 import AdminHome from '../views/admin/Home';
 import ArticlesPage from '../views/admin/Articles/ArticlesPage';
 import AdminLogin from '../views/admin/LoginPage';
+import CheckIn from '../views/admin/CheckInPage';
 
 
 Vue.use(VueRouter);
@@ -28,6 +29,13 @@ const routes = [
         path: '/admin/login',
         name: 'AdminLogin',
         component: AdminLogin,
+    },
+
+    {
+        path: '/admin/register',
+        name: 'CheckIn',
+        component: CheckIn,
+        meta : { requiresAuth : true }
     },
 
     {

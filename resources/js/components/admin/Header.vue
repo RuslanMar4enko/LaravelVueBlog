@@ -17,7 +17,7 @@
                     <router-link :to="{ name: 'ArticlesPage'}"><i class="fa fa-newspaper-o"></i><span>News</span>
                     </router-link>
                 </li>
-                <li><a><i class="fa fa-server"></i><span>Server</span></a></li>
+                <li><router-link :to="{ name: 'CheckIn'}"><i class="fa fa-users"></i><span>New admin</span></router-link></li>
                 <li><a><i class="fa fa-calendar"></i><span>Calendar</span></a></li>
                 <li><a><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
                 <li><a @click="logout" ><i class="fa fa-sign-out"></i><span>Logout</span></a></li>

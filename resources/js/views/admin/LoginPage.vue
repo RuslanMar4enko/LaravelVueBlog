@@ -44,7 +44,6 @@
                         location.reload()
                         this.$router.push({name: 'AdminHome'})
 
-
                     }
 
                 } catch (e) {
