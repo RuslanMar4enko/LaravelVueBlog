@@ -5,36 +5,54 @@
                 <i class="fa fa-bars"></i>
                 <span>Menu</span>
             </a>
-            <div class="logo">
-                AdminLogo
-            </div>
+            <router-link :to="{ name: 'AdminHome'}">
+                <div class="logo">
+                    AdminLogo
+                </div>
+            </router-link>
         </div>
         <div class="sidebar" :class="getSidebarClass()">
             <ul>
-                <li><a href="#"><i class="fa fa-desktop"></i><span>Desktop</span></a></li>
-                <li><a href="#"><i class="fa fa-server"></i><span>Server</span></a></li>
-                <li><a href="#"><i class="fa fa-calendar"></i><span>Calendar</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
-                <li><a href="#"><i class="fa fa-table"></i><span>Data Table</span></a></li>
+                <li>
+                    <router-link :to="{ name: 'ArticlesPage'}"><i class="fa fa-newspaper-o"></i><span>News</span>
+                    </router-link>
+                </li>
+                <li><a><i class="fa fa-server"></i><span>Server</span></a></li>
+                <li><a><i class="fa fa-calendar"></i><span>Calendar</span></a></li>
+                <li><a><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
+                <li><a @click="logout" ><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
+
+    import * as types from '../../store/modules/auth/mutation-types';
     export default {
-        data(){
-          return{
-              isActive: false
-          }
+        data() {
+            return {
+                isActive: false
+            }
         },
         methods: {
             menuToggle() {
                 this.isActive = !this.isActive
             },
             getSidebarClass() {
-                return this.isActive? 'active':''
+                return this.isActive ? 'active' : ''
             },
+            async logout() {
+                try {
+                    await window.axios.get('/api/logout')
+                    localStorage.removeItem('token')
+                    this.$store.commit(types.SIGN_IN, null)
+                    this.$router.push({name: 'AdminHome'});
+                } catch (e) {
+                    console.log(e);
+                }
+
+            }
         }
     }
 </script>

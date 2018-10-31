@@ -5,7 +5,7 @@
                 <div class="login-form">
                     <input v-model="username" class="input-login" type="text" placeholder="email"/>
                     <input v-model="password" class="input-login" type="password" placeholder="password"/>
-                    <button @click='login' class="login-btn">login</button>
+                    <button  @click='login' class="login-btn">login</button>
                 </div>
             </div>
         </div>
@@ -41,7 +41,10 @@
                     if (token.data.token) {
                         localStorage.setItem('token', token.data.token)
                         this.$store.commit(types.SIGN_IN, token.data.token)
-                        this.$router.push({name: 'AdminHome'});
+                        location.reload()
+                        this.$router.push({name: 'AdminHome'})
+
+
                     }
 
                 } catch (e) {

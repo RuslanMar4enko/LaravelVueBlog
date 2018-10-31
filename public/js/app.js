@@ -50296,7 +50296,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -50496,6 +50495,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (token.data.token) {
                                     localStorage.setItem('token', token.data.token);
                                     this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["a" /* SIGN_IN */], token.data.token);
+                                    location.reload();
                                     this.$router.push({ name: 'AdminHome' });
                                 }
 
@@ -52829,6 +52829,13 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__ = __webpack_require__(14);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -52852,6 +52859,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52866,7 +52880,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getSidebarClass: function getSidebarClass() {
             return this.isActive ? 'active' : '';
-        }
+        },
+        logout: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return window.axios.get('/api/logout');
+
+                            case 3:
+                                localStorage.removeItem('token');
+                                this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["a" /* SIGN_IN */], null);
+                                this.$router.push({ name: 'AdminHome' });
+                                _context.next = 11;
+                                break;
+
+                            case 8:
+                                _context.prev = 8;
+                                _context.t0 = _context['catch'](0);
+
+                                console.log(_context.t0);
+
+                            case 11:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 8]]);
+            }));
+
+            function logout() {
+                return _ref.apply(this, arguments);
+            }
+
+            return logout;
+        }()
     }
 });
 
@@ -52879,20 +52930,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "header" }, [
-      _c("a", { attrs: { id: "menu-toggle" }, on: { click: _vm.menuToggle } }, [
-        _c("i", { staticClass: "fa fa-bars" }),
+    _c(
+      "div",
+      { staticClass: "header" },
+      [
+        _c(
+          "a",
+          { attrs: { id: "menu-toggle" }, on: { click: _vm.menuToggle } },
+          [
+            _c("i", { staticClass: "fa fa-bars" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("Menu")])
+          ]
+        ),
         _vm._v(" "),
-        _c("span", [_vm._v("Menu")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "logo" }, [
-        _vm._v("\n            AdminLogo\n        ")
-      ])
-    ]),
+        _c("router-link", { attrs: { to: { name: "AdminHome" } } }, [
+          _c("div", { staticClass: "logo" }, [
+            _vm._v("\n                AdminLogo\n            ")
+          ])
+        ])
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "sidebar", class: _vm.getSidebarClass() }, [
-      _vm._m(0)
+      _c("ul", [
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: { name: "ArticlesPage" } } }, [
+              _c("i", { staticClass: "fa fa-newspaper-o" }),
+              _c("span", [_vm._v("News")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { on: { click: _vm.logout } }, [
+            _c("i", { staticClass: "fa fa-sign-out" }),
+            _c("span", [_vm._v("Logout")])
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -52901,40 +52987,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", [
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { staticClass: "fa fa-desktop" }),
-          _c("span", [_vm._v("Desktop")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { staticClass: "fa fa-server" }),
-          _c("span", [_vm._v("Server")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _c("span", [_vm._v("Calendar")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { staticClass: "fa fa-envelope-o" }),
-          _c("span", [_vm._v("Messages")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { staticClass: "fa fa-table" }),
-          _c("span", [_vm._v("Data Table")])
-        ])
+    return _c("li", [
+      _c("a", [
+        _c("i", { staticClass: "fa fa-server" }),
+        _c("span", [_vm._v("Server")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", [
+        _c("i", { staticClass: "fa fa-calendar" }),
+        _c("span", [_vm._v("Calendar")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", [
+        _c("i", { staticClass: "fa fa-envelope-o" }),
+        _c("span", [_vm._v("Messages")])
       ])
     ])
   }
