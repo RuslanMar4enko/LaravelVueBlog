@@ -13,15 +13,16 @@ export const signIn = async (context, payload) => {
 }
 
 
-export const register = async(context, payload) =>{
-    const json = await auth.register(payload)
+export const сheckIn = async(context, payload) =>{
+    const json = await auth.сheckIn(payload)
 
     if(json.status === 200){
-        this.commit(types.REGISTER, json.data)
+        this.commit(types.CHECKIN, json.data)
     }
 }
 
 
 export default {
     signIn,
+    сheckIn,
 }

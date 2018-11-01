@@ -4,7 +4,7 @@ export default {
         return token
     },
 
-    async register(data){
+    async сheckIn(data){
         const user = await  window.axios.post('/api/register', data)
         return user
     }

@@ -37,7 +37,7 @@
            async register()
             {
                 try {
-                  let user = await this.$store.dispatch('register', {
+                  let user = await this.$store.dispatch('сheckIn', {
                       name: this.name,
                       email: this.email,
                       password: this.password
