@@ -1,2 +1,2 @@
-export const SIGN_IN = 'SIGN_IN';
+export const TOKEN = 'TOKEN';
 export const CHECKIN = 'CHECKIN';

@@ -50,6 +50,8 @@ const router = new VueRouter({
     routes,
 });
 
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+
 router.beforeEach((to, from, next) => {
     if(to.meta.requiresAuth) {
         if(localStorage.getItem('token')) {

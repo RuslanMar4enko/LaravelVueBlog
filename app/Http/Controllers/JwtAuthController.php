@@ -62,10 +62,10 @@ class JwtAuthController extends Controller
      */
     public function refresh()
     {
-        try{
+        try {
             $newToken = JWTAuth::refresh(JWTAuth::getToken());
             return ['token' => $newToken];
-        }catch (JWTException $e){
+        } catch (JWTException $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 

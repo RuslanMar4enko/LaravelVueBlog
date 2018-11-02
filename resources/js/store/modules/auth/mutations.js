@@ -1,11 +1,11 @@
 import * as types from './mutation-types';
 
 export default {
-    [types.SIGN_IN](state, payload) {
+    [types.TOKEN](state, payload) {
         state.token = payload;
     },
 
-    [types.REGISTER](state, payload) {
+    [types.CHECKIN](state, payload) {
         state.register = payload;
     }
 };

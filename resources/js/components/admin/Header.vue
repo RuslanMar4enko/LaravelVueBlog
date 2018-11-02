@@ -46,8 +46,8 @@
                 try {
                     await window.axios.get('/api/logout')
                     localStorage.removeItem('token')
-                    this.$store.commit(types.SIGN_IN, null)
-                    this.$router.push({name: 'AdminHome'});
+                    this.$store.commit(types.TOKEN, null)
+                    this.$router.push({name: 'AdminLogin'});
                 } catch (e) {
                     console.log(e);
                 }

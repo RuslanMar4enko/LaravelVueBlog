@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "font-awesome-scss": "^1.0.0",
-        "vue-i18n": "^8.1.1",
+        "to-camel-case": "^1.0.0",
+        "vee-validate": "^2.1.1",
+        "vue-i18n": "^8.3.0",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"
     }
