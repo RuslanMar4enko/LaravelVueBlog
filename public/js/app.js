@@ -51592,15 +51592,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             err: null
         };
     },
-    mounted: function mounted() {
-        this.$notify({
-            group: 'foo',
-            title: 'This is title',
-            text: 'This is <b> content </b>',
-            duration: 10000,
-            speed: 1000
-        });
-    },
+
 
     methods: {
         register: function () {
@@ -51623,7 +51615,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 valid = _context.sent.every(_context.t0);
 
                                 if (!valid) {
-                                    _context.next = 12;
+                                    _context.next = 14;
                                     break;
                                 }
 
@@ -51635,16 +51627,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 });
 
                             case 9:
+                                this.$notify({
+                                    group: 'foo',
+                                    title: 'New user',
+                                    text: 'New User created',
+                                    duration: 8000,
+                                    speed: 500
+                                });
                                 this.name = null;
                                 this.email = null;
                                 this.password = null;
-
-                            case 12:
-                                _context.next = 18;
-                                break;
+                                this.err = null;
 
                             case 14:
-                                _context.prev = 14;
+                                _context.next = 20;
+                                break;
+
+                            case 16:
+                                _context.prev = 16;
                                 _context.t1 = _context['catch'](0);
 
                                 if (_context.t1) {
@@ -51652,12 +51652,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 }
                                 this.getErrors(_context.t1);
 
-                            case 18:
+                            case 20:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[0, 14]]);
+                }, _callee, this, [[0, 16]]);
             }));
 
             function register() {

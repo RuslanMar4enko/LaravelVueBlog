@@ -53,15 +53,6 @@
             }
         },
 
-        mounted(){
-            this.$notify({
-                group: 'foo',
-                title: 'This is title',
-                text: 'This is <b> content </b>',
-                duration: 10000,
-                speed: 1000
-            })
-        },
         methods:{
            async register()
             {
@@ -78,9 +69,18 @@
                             email: this.email,
                             password: this.password
                         });
+                        this.$notify({
+                            group: 'foo',
+                            title: 'New user',
+                            text: 'New User created',
+                            duration: 8000,
+                            speed: 500
+                        })
                         this.name = null
                         this.email = null
                         this.password = null
+                        this.err = null
+
                     }
                 }catch (e) {
                     if (e) {
