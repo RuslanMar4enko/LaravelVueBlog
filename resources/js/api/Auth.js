@@ -1,11 +1,13 @@
+import api from '../config/api'
+
 export default {
     async signIn(data) {
-        const token = await  window.axios.post('/api/login', data);
+        const token = await  api().post('login', data);
         return token
     },
 
     async сheckIn(data){
-        const user = await  window.axios.post('/api/register', data)
+        const user = await  api().post('register', data)
         return user
     }
 }

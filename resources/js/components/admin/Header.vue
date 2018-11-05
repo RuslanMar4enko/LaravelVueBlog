@@ -28,6 +28,7 @@
 
 <script>
     import * as types from '../../store/modules/auth/mutation-types';
+    import api from '../../config/api'
     export default {
         data() {
             return {
@@ -43,7 +44,7 @@
             },
             async logout() {
                 try {
-                    await window.axios.get('/api/logout')
+                    await api().get('logout')
                     localStorage.removeItem('token')
                     this.$store.commit(types.TOKEN, null)
                     this.$router.push({name: 'AdminLogin'});

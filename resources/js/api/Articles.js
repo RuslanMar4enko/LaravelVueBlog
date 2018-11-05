@@ -1,6 +1,8 @@
+import api from '../config/api'
+
 export default {
     async getAticles() {
-        const data = await window.axios.get('/api/admin/articles');
+        const data = api().get('admin/articles');
         return data;
     },
 
