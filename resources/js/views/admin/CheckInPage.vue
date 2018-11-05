@@ -2,20 +2,39 @@
     <div>
         <div class="main-admin-top container">
             <h1>New User Registration</h1>
+            <small class="form-text text-danger" v-if="err">
+                {{err}}
+            </small>
             <form >
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input v-model="name" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
-                           placeholder="Enter name">
+                    <small class="form-text text-danger" v-if="errors.has('name')">
+                        {{ errors.first('name') }}
+                    </small>
+                    <input v-model="name" type="text" class="form-control"  id="exampleInputName" aria-describedby="nameHelp"
+                           placeholder="Enter name" name="name"
+                           :data-vv-as="'name'"
+                           v-validate="'required|min:3'">
                 </div>
+
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                           placeholder="Enter email">
+                    <small class="form-text text-danger" v-if="errors.has('email')">
+                        {{ errors.first('email') }}
+                    </small>
+                    <input v-model="email" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Enter email"
+                           :data-vv-as="'email'"
+                           v-validate="'required|min:3|email'">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input v-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <small class="form-text text-danger" v-if="errors.has('password')">
+                        {{ errors.first('password') }}
+                    </small>
+                    <input v-model="password" name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                           :data-vv-as="'password'"
+                           v-validate="'required|min:6|max:16'">
                 </div>
                 <button @click="register" type="button" class="btn btn-success">Submit</button>
             </form>
@@ -29,22 +48,45 @@
             return {
                 name: null,
                 email: null,
-                password: null
+                password: null,
+                err: null
             }
         },
 
+        mounted(){
+            this.$notify({
+                group: 'foo',
+                title: 'This is title',
+                text: 'This is <b> content </b>',
+                duration: 10000,
+                speed: 1000
+            })
+        },
         methods:{
            async register()
             {
                 try {
-                  let user = await this.$store.dispatch('сheckIn', {
-                      name: this.name,
-                      email: this.email,
-                      password: this.password
-                    })
-                    console.log(user);
+                    const results = Promise.all([
+                        this.$validator.validate('name'),
+                        this.$validator.validate('email'),
+                        this.$validator.validate('password')
+                    ]);
+                    const valid = (await results).every(isValid => isValid);
+                    if (valid) {
+                        await this.$store.dispatch('сheckIn', {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password
+                        });
+                        this.name = null
+                        this.email = null
+                        this.password = null
+                    }
                 }catch (e) {
-                    console.log(e);
+                    if (e) {
+                        this.err = 'Name or email must be unique'
+                    }
+                    this.getErrors(e);
                 }
             }
         }

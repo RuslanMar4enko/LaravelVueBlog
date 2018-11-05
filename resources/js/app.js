@@ -14,8 +14,11 @@ import store from './store';
 import i18n from './plugins/lang';
 import getErrors from './plugins/GetErrors'
 import './plugins/vee-validate';
+import Notifications from 'vue-notification'
 
-Vue.use(getErrors);
+Vue.use(Notifications)
+Vue.use(getErrors)
+
 /**
  * Main App.
  *

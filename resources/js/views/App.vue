@@ -1,6 +1,7 @@
 <template>
     <div>
         <page-header-admin v-if="$route.name !== 'AdminLogin' &&  $route.meta.requiresAuth !== undefined"></page-header-admin>
+        <notifications group="foo" />
         <router-view></router-view>
     </div>
 </template>

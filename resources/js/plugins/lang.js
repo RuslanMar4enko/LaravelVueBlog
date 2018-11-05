@@ -7,9 +7,9 @@ import en from '../lang/en/en';
 Vue.use(VueI18n);
 
 export default new VueI18n({
-    locale: 'ru',
+    locale: 'en',
     messages: {
-        ru,
         en,
+        ru,
     },
 });

@@ -34,16 +34,16 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getAticles');
+            this.$store.dispatch('getAticles')
         },
         computed: {
             articleData() {
-                return this.$store.getters.articles;
+                return this.$store.getters.articles
             },
         },
         watch: {
             articleData(articleData) {
-                this.articles = articleData.data;
+                this.articles = articleData.data
             },
         },
     }

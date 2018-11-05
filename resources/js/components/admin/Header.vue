@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
     import * as types from '../../store/modules/auth/mutation-types';
     export default {
         data() {

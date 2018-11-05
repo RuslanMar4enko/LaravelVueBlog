@@ -2,7 +2,7 @@
 
     <div>
         <div class="main-admin-top container">
-            <h1>xdfgdfgdfgdfgdfgdfg</h1>
+            <h1>{{ $t('translation.welcome') }}</h1>
         </div>
     </div>
 
