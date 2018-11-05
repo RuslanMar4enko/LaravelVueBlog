@@ -14,13 +14,19 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
+
             $table->increments('id');
             $table->string('title');
             $table->string('image');
             $table->string('description');
-            $table->string('data', 50);
             $table->text('text');
+            $table->string('data', 50);
+            $table->integer('language_id')->unsigned();
+            $table->foreign('language_id', 'articles_language_id_foreign')->references('id')->on('languages');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id', 'articles_categories_id_foreign')->references('id')->on('categories');
             $table->timestamps();
+
         });
     }
 
@@ -31,6 +37,13 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::table('articles', function ($table) {
+
+            $table->dropForeign('articles_language_id_foreign');
+            $table->dropColumn('language_id');
+
+            $table->dropForeign('articles_categories_id_foreign');
+            $table->dropColumn('category_id');
+        });
     }
 }
