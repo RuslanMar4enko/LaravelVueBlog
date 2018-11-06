@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 import articles from './modules/articles';
 import  auth from  './modules/auth'
+import  language from  './modules/language'
 
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
      */
     modules: {
         articles,
-        auth
+        auth,
+        language
     },
 });

@@ -5,7 +5,8 @@ import AdminHome from '../views/admin/Home';
 import ArticlesPage from '../views/admin/Articles/ArticlesPage';
 import AdminLogin from '../views/admin/LoginPage';
 import CheckIn from '../views/admin/CheckInPage';
-
+import LanguagePage from '../views/admin/Language/LanguagePage';
+import CreateLangPage from '../views/admin/Language/CreateLangPage';
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,20 @@ const routes = [
         path: '/admin/articles',
         name: 'ArticlesPage',
         component: ArticlesPage,
+        meta : { requiresAuth : true }
+    },
+
+    {
+        path: '/admin/language',
+        name: 'LanguagePage',
+        component: LanguagePage,
+        meta : { requiresAuth : true }
+    },
+
+    {
+        path: '/admin/language/create',
+        name: 'CreateLangPage',
+        component: CreateLangPage,
         meta : { requiresAuth : true }
     },
 ];

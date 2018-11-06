@@ -10663,6 +10663,29 @@ a.text-dark:focus {
   margin-top: 80px;
 }
 
+.actions-icons {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 20px !important;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.actions-icons:hover {
+  -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.delete-action {
+  color: red;
+}
+
+.update-action {
+  color: #3f9ae5;
+}
+
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

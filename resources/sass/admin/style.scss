@@ -1,3 +1,23 @@
 .main-admin-top {
   margin-top: 80px;
 }
+
+.actions-icons
+{
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 20px !important;
+  transition: 0.5s;
+  &:hover{
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.5s;
+  }
+}
+
+.delete-action{
+  color: red;
+}
+
+.update-action{
+  color: #3f9ae5;
+}
