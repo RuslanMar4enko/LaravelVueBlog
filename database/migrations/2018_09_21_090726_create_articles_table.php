@@ -44,6 +44,9 @@ class CreateArticlesTable extends Migration
 
             $table->dropForeign('articles_categories_id_foreign');
             $table->dropColumn('category_id');
+
+
         });
+        Schema::dropIfExists('articles');
     }
 }
