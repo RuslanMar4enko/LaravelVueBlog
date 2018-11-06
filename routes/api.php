@@ -18,14 +18,23 @@ use Illuminate\Http\Request;
 Route::post('/login', 'JwtAuthController@login');
 
 Route::post('/refresh', 'JwtAuthController@refresh');
-
+Route::post('/register', 'JwtAuthController@register');
 Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::post('/register', 'JwtAuthController@register');
+
     Route::get('/login/user', 'JwtAuthController@getUser');
     Route::get('/logout', 'JwtAuthController@logout');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.auth'], function () {
+
+    //Articles
     Route::get('/articles', 'ArticleController@getArticles');
     Route::post('/articles/create', 'ArticleController@postArticle');
+
+    //Language
+    Route::get('/languages', 'LanguageController@index');
+    Route::post('/language', 'LanguageController@saveLang');
+    Route::put('/language/{id}', 'LanguageController@editLang');
+    Route::delete('/language/{id}', 'LanguageController@deleteLang');
+
 });
