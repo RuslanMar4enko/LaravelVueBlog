@@ -1,1 +1,1 @@
-export const LANGUAGE = 'LANGUAGE';
+export const LANGUAGE = "LANGUAGE";

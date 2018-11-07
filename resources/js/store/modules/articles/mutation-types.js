@@ -1,1 +1,1 @@
-export const ARTICLES = 'ARTICLES';
+export const ARTICLES = "ARTICLES";

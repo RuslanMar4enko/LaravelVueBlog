@@ -44,51 +44,51 @@
 
 <script>
     export default {
-        data() {
-            return {
-                name: null,
-                email: null,
-                password: null,
-                err: null
-            }
-        },
+    	data() {
+    		return {
+    			name: null,
+    			email: null,
+    			password: null,
+    			err: null
+    		};
+    	},
 
-        methods:{
-           async register()
-            {
-                try {
-                    const results = Promise.all([
-                        this.$validator.validate('name'),
-                        this.$validator.validate('email'),
-                        this.$validator.validate('password')
-                    ]);
-                    const valid = (await results).every(isValid => isValid);
-                    if (valid) {
-                        await this.$store.dispatch('сheckIn', {
-                            name: this.name,
-                            email: this.email,
-                            password: this.password
-                        });
-                        this.$notify({
-                            group: 'foo',
-                            title: 'New user',
-                            text: 'New User created',
-                            duration: 8000,
-                            speed: 500
-                        })
-                        this.name = null
-                        this.email = null
-                        this.password = null
-                        this.err = null
+    	methods:{
+    		async register()
+    		{
+    			try {
+    				const results = Promise.all([
+    					this.$validator.validate("name"),
+    					this.$validator.validate("email"),
+    					this.$validator.validate("password")
+    				]);
+    				const valid = (await results).every(isValid => isValid);
+    				if (valid) {
+    					await this.$store.dispatch("сheckIn", {
+    						name: this.name,
+    						email: this.email,
+    						password: this.password
+    					});
+    					this.$notify({
+    						group: "foo",
+    						title: "New user",
+    						text: "New User created",
+    						duration: 8000,
+    						speed: 500
+    					});
+    					this.name = null;
+    					this.email = null;
+    					this.password = null;
+    					this.err = null;
 
-                    }
-                }catch (e) {
-                    if (e) {
-                        this.err = 'Name or email must be unique'
-                    }
-                    this.getErrors(e);
-                }
-            }
-        }
-    }
+    				}
+    			}catch (e) {
+    				if (e) {
+    					this.err = "Name or email must be unique";
+    				}
+    				this.getErrors(e);
+    			}
+    		}
+    	}
+    };
 </script>

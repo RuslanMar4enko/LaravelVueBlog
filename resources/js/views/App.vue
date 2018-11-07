@@ -7,15 +7,15 @@
 </template>
 
 <script>
-    import PageHeaderAdmin from '../components/admin/Header'
+    import PageHeaderAdmin from "../components/admin/Header";
     export default {
-        data(){
-          return{
+    	data(){
+    		return{
 
-          }
-        },
-        components:{
-            PageHeaderAdmin
-        },
+    		};
+    	},
+    	components:{
+    		PageHeaderAdmin
+    	},
     };
 </script>

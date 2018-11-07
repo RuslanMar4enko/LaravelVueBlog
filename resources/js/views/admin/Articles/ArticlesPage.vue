@@ -28,23 +28,23 @@
 
 <script>
     export default {
-        data() {
-            return {
-                articles: null
-            }
-        },
-        mounted() {
-            this.$store.dispatch('getAticles')
-        },
-        computed: {
-            articleData() {
-                return this.$store.getters.articles
-            },
-        },
-        watch: {
-            articleData(articleData) {
-                this.articles = articleData.data
-            },
-        },
-    }
+    	data() {
+    		return {
+    			articles: null
+    		};
+    	},
+    	mounted() {
+    		this.$store.dispatch("getAticles");
+    	},
+    	computed: {
+    		articleData() {
+    			return this.$store.getters.articles;
+    		},
+    	},
+    	watch: {
+    		articleData(articleData) {
+    			this.articles = articleData.data;
+    		},
+    	},
+    };
 </script>

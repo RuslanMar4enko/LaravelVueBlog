@@ -27,55 +27,55 @@
 
 <script>
 
-    import * as types from '../../store/modules/auth/mutation-types';
+    import * as types from "../../store/modules/auth/mutation-types";
 
     export default {
-        data() {
-            return {
-                username: null,
-                password: null,
-                err: null
-            }
-        },
+    	data() {
+    		return {
+    			username: null,
+    			password: null,
+    			err: null
+    		};
+    	},
 
-        mounted() {
-            if (localStorage.getItem('token')) {
-                this.$router.push({name: 'AdminHome'});
-            }
-        },
+    	mounted() {
+    		if (localStorage.getItem("token")) {
+    			this.$router.push({name: "AdminHome"});
+    		}
+    	},
 
-        methods: {
-            async login() {
+    	methods: {
+    		async login() {
 
-                const results = Promise.all([
-                    this.$validator.validate('username'),
-                    this.$validator.validate('password')
-                ]);
-                const valid = (await results).every(isValid => isValid);
-                if (valid) {
-                    try {
-                        const token = await this.$store.dispatch('signIn', {
-                            email: this.username,
-                            password: this.password,
-                        });
-                        if (token.data.token) {
-                            localStorage.setItem('token', token.data.token)
-                            this.$store.commit(types.TOKEN, token.data.token)
-                            location.reload()
-                            this.$router.push({name: 'AdminHome'})
-                        }
+    			const results = Promise.all([
+    				this.$validator.validate("username"),
+    				this.$validator.validate("password")
+    			]);
+    			const valid = (await results).every(isValid => isValid);
+    			if (valid) {
+    				try {
+    					const token = await this.$store.dispatch("signIn", {
+    						email: this.username,
+    						password: this.password,
+    					});
+    					if (token.data.token) {
+    						localStorage.setItem("token", token.data.token);
+    						this.$store.commit(types.TOKEN, token.data.token);
+    						location.reload();
+    						this.$router.push({name: "AdminHome"});
+    					}
 
-                    } catch (e) {
-                        if (e) {
-                            this.err = 'Incorrect password or email'
-                        }
-                        this.getErrors(e);
-                    }
-                }
-            },
+    				} catch (e) {
+    					if (e) {
+    						this.err = "Incorrect password or email";
+    					}
+    					this.getErrors(e);
+    				}
+    			}
+    		},
 
-        },
+    	},
 
-    }
+    };
 
 </script>

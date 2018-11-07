@@ -28,23 +28,23 @@
 </template>
 <script>
     export default {
-        data() {
-            return {
-                language: null
-            }
-        },
-        mounted() {
-            this.$store.dispatch('getLang')
-        },
-        computed: {
-            langData() {
-                return this.$store.getters.language
-            },
-        },
-        watch: {
-            langData(langData) {
-                this.language = langData.data
-            },
-        },
-    }
+    	data() {
+    		return {
+    			language: null
+    		};
+    	},
+    	mounted() {
+    		this.$store.dispatch("getLang");
+    	},
+    	computed: {
+    		langData() {
+    			return this.$store.getters.language;
+    		},
+    	},
+    	watch: {
+    		langData(langData) {
+    			this.language = langData.data;
+    		},
+    	},
+    };
 </script>

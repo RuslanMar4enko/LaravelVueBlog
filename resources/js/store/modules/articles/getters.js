@@ -1,3 +1,3 @@
 export default {
-    articles:state => state.articles,
+	articles:state => state.articles,
 };

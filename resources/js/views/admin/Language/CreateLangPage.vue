@@ -16,22 +16,22 @@
 
 <script>
     export default {
-        data() {
-            return {
-                name: null
-            }
-        },
-        methods: {
-            async saveLanguage() {
-                const lang = await this.$store.dispatch('saveLang', {
-                    name: this.name,
-                })
+    	data() {
+    		return {
+    			name: null
+    		};
+    	},
+    	methods: {
+    		async saveLanguage() {
+    			const lang = await this.$store.dispatch("saveLang", {
+    				name: this.name,
+    			});
 
-                if(lang.status === 201){
+    			if(lang.status === 201){
+    				console.log(lang);
+    			}
 
-                }
-
-            }
-        }
-    }
+    		}
+    	}
+    };
 </script>

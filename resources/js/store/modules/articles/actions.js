@@ -1,20 +1,20 @@
 
-import article from '../../../api/Articles'
-import * as types from './mutation-types';
+import article from "../../../api/Articles";
+import * as types from "./mutation-types";
 
 export const getAticles = async ({ commit }) => {
-    const json = await article.getAticles();
+	const json = await article.getAticles();
 
-    if (json.status === 200){
-        commit(types.ARTICLES, json.data);
-        return json;
-    }
+	if (json.status === 200){
+		commit(types.ARTICLES, json.data);
+		return json;
+	}
 
-    throw json;
+	throw json;
 
 };
 
 
 export default {
-    getAticles,
-}
+	getAticles,
+};

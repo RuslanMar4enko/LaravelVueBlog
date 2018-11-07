@@ -1,5 +1,5 @@
 export default {
-    translation: {
-        welcome: 'Welcome',
-    },
+	translation: {
+		welcome: "Welcome",
+	},
 };

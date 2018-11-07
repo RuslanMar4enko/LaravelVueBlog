@@ -1,28 +1,28 @@
-import auth from '../../../api/Auth'
-import * as types from './mutation-types';
+import auth from "../../../api/Auth";
+import * as types from "./mutation-types";
 
 
 export const signIn = async (context, payload) => {
-    const json = await auth.signIn(payload);
+	const json = await auth.signIn(payload);
 
-    if (json.status === 200){
-        return json;
-    }
+	if (json.status === 200){
+		return json;
+	}
 
-    throw json;
-}
+	throw json;
+};
 
 
 export const сheckIn = async(context, payload) =>{
-    const json = await auth.сheckIn(payload)
+	const json = await auth.сheckIn(payload);
 
-    if(json.status === 200){
-        this.commit(types.CHECKIN, json.data)
-    }
-}
+	if(json.status === 200){
+		this.commit(types.CHECKIN, json.data);
+	}
+};
 
 
 export default {
-    signIn,
-    сheckIn,
-}
+	signIn,
+	сheckIn,
+};

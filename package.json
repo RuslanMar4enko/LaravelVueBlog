@@ -13,6 +13,9 @@
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
+        "eslint": "^5.8.0",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-vue": "^5.0.0-beta.3",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
@@ -20,6 +23,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "eslint-plugin-html": "^4.0.6",
         "font-awesome-scss": "^1.0.0",
         "to-camel-case": "^1.0.0",
         "vee-validate": "^2.1.1",

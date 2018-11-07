@@ -1,4 +1,4 @@
 export default {
-    token: null,
-    сheckIn: null
+	token: null,
+	сheckIn: null
 };
