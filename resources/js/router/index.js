@@ -7,6 +7,7 @@ import AdminLogin from "../views/admin/LoginPage";
 import CheckIn from "../views/admin/CheckInPage";
 import LanguagePage from "../views/admin/Language/LanguagePage";
 import CreateLangPage from "../views/admin/Language/CreateLangPage";
+import UpdateLangPage from "../views/admin/Language/UpdateLangPage";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,13 @@ const routes = [
 		path: "/admin/language/create",
 		name: "CreateLangPage",
 		component: CreateLangPage,
+		meta : { requiresAuth : true }
+	},
+
+	{
+		path: "/admin/language/update",
+		name: "UpdateLangPage",
+		component: UpdateLangPage,
 		meta : { requiresAuth : true }
 	},
 ];
