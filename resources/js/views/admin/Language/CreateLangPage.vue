@@ -2,14 +2,22 @@
     <div>
         <div class="main-admin-top container">
             <h1>New Language Registration</h1>
-            <form>
+            <div>
+                <small class="form-text text-danger" v-if="err">
+                    {{err}}
+                </small>
                 <div class="form-group">
                     <label for="exampleInputLanguage">Name Language</label>
                     <input v-model="name" type="text" class="form-control" id="exampleInputLanguage"
-                           placeholder="Language">
+                           placeholder="Language" name="name"
+                           :data-vv-as="'Language'"
+                           v-validate="'required|max:2'">
+                    <small class="form-text text-danger" v-if="errors.has('name')">
+                        {{ errors.first('name') }}
+                    </small>
                 </div>
                 <button @click="saveLanguage" type="submit" class="btn btn-success">Submit</button>
-            </form>
+            </div>
         </div>
     </div>
 </template>
@@ -18,17 +26,33 @@
     export default {
     	data() {
     		return {
-    			name: null
+    			name: null,
+    			err: null
     		};
     	},
     	methods: {
     		async saveLanguage() {
-    			const lang = await this.$store.dispatch("saveLang", {
-    				name: this.name,
-    			});
+    			const result = Promise.all([
+    				this.$validator.validate("name"),
+    			]);
+    			const valid = (await result).every(isValid => isValid);
+    			if (valid) {
+    				const lang = await this.$store.dispatch("saveLang", {
+    					name: this.name,
+    				});
 
-    			if(lang.status === 201){
-    				console.log(lang);
+    				if (lang.status === 201) {
+    					this.$notify({
+    						group: "foo",
+    						title: "New Language",
+    						text: "New Language created",
+    						duration: 8000,
+    						speed: 500
+    					});
+    					this.name = null;
+    				}else{
+    					this.err = "Name or email must be unique";
+    				}
     			}
 
     		}

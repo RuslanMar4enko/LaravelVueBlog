@@ -50597,6 +50597,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								_context.prev = 13;
 								_context.t1 = _context["catch"](6);
 
+
 								if (_context.t1) {
 									this.err = "Incorrect password or email";
 								}
@@ -52174,36 +52175,70 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			name: null
+			name: null,
+			err: null
 		};
 	},
 
 	methods: {
 		saveLanguage: function () {
 			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-				var lang;
+				var result, valid, lang;
 				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								_context.next = 2;
+								result = Promise.all([this.$validator.validate("name")]);
+								_context.next = 3;
+								return result;
+
+							case 3:
+								_context.t0 = function (isValid) {
+									return isValid;
+								};
+
+								valid = _context.sent.every(_context.t0);
+
+								if (!valid) {
+									_context.next = 10;
+									break;
+								}
+
+								_context.next = 8;
 								return this.$store.dispatch("saveLang", {
 									name: this.name
 								});
 
-							case 2:
+							case 8:
 								lang = _context.sent;
 
 
 								if (lang.status === 201) {
-									console.log(lang);
+									this.$notify({
+										group: "foo",
+										title: "New Language",
+										text: "New Language created",
+										duration: 8000,
+										speed: 500
+									});
+									this.name = null;
+								} else {
+									this.err = "Name or email must be unique";
 								}
 
-							case 4:
+							case 10:
 							case "end":
 								return _context.stop();
 						}
@@ -52232,7 +52267,13 @@ var render = function() {
     _c("div", { staticClass: "main-admin-top container" }, [
       _c("h1", [_vm._v("New Language Registration")]),
       _vm._v(" "),
-      _c("form", [
+      _c("div", [
+        _vm.err
+          ? _c("small", { staticClass: "form-text text-danger" }, [
+              _vm._v("\n                " + _vm._s(_vm.err) + "\n            ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "exampleInputLanguage" } }, [
             _vm._v("Name Language")
@@ -52245,13 +52286,21 @@ var render = function() {
                 rawName: "v-model",
                 value: _vm.name,
                 expression: "name"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|max:2",
+                expression: "'required|max:2'"
               }
             ],
             staticClass: "form-control",
             attrs: {
               type: "text",
               id: "exampleInputLanguage",
-              placeholder: "Language"
+              placeholder: "Language",
+              name: "name",
+              "data-vv-as": "Language"
             },
             domProps: { value: _vm.name },
             on: {
@@ -52262,7 +52311,17 @@ var render = function() {
                 _vm.name = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.has("name")
+            ? _c("small", { staticClass: "form-text text-danger" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.errors.first("name")) +
+                    "\n                "
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c(
@@ -53469,7 +53528,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-var signIn = function () {
+var signIn = function signIn(context, payload) {
+	var json = __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].signIn(payload);
+	return json;
+};
+
+var сheckIn = function () {
 	var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(context, payload) {
 		var json;
 		return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -53477,46 +53541,10 @@ var signIn = function () {
 				switch (_context.prev = _context.next) {
 					case 0:
 						_context.next = 2;
-						return __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].signIn(payload);
-
-					case 2:
-						json = _context.sent;
-
-						if (!(json.status === 200)) {
-							_context.next = 5;
-							break;
-						}
-
-						return _context.abrupt("return", json);
-
-					case 5:
-						throw json;
-
-					case 6:
-					case "end":
-						return _context.stop();
-				}
-			}
-		}, _callee, _this);
-	}));
-
-	return function signIn(_x, _x2) {
-		return _ref.apply(this, arguments);
-	};
-}();
-
-var сheckIn = function () {
-	var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(context, payload) {
-		var json;
-		return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-			while (1) {
-				switch (_context2.prev = _context2.next) {
-					case 0:
-						_context2.next = 2;
 						return __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].сheckIn(payload);
 
 					case 2:
-						json = _context2.sent;
+						json = _context.sent;
 
 
 						if (json.status === 200) {
@@ -53525,14 +53553,14 @@ var сheckIn = function () {
 
 					case 4:
 					case "end":
-						return _context2.stop();
+						return _context.stop();
 				}
 			}
-		}, _callee2, _this);
+		}, _callee, _this);
 	}));
 
-	return function сheckIn(_x3, _x4) {
-		return _ref2.apply(this, arguments);
+	return function сheckIn(_x, _x2) {
+		return _ref.apply(this, arguments);
 	};
 }();
 
@@ -53546,72 +53574,18 @@ var сheckIn = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_api__ = __webpack_require__(6);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_api__ = __webpack_require__(6);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-	signIn: function () {
-		var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(data) {
-			var token;
-			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-				while (1) {
-					switch (_context.prev = _context.next) {
-						case 0:
-							_context.next = 2;
-							return Object(__WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */])().post("login", data);
-
-						case 2:
-							token = _context.sent;
-							return _context.abrupt("return", token);
-
-						case 4:
-						case "end":
-							return _context.stop();
-					}
-				}
-			}, _callee, this);
-		}));
-
-		function signIn(_x) {
-			return _ref.apply(this, arguments);
-		}
-
-		return signIn;
-	}(),
-	сheckIn: function () {
-		var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(data) {
-			var user;
-			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-				while (1) {
-					switch (_context2.prev = _context2.next) {
-						case 0:
-							_context2.next = 2;
-							return Object(__WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */])().post("register", data);
-
-						case 2:
-							user = _context2.sent;
-							return _context2.abrupt("return", user);
-
-						case 4:
-						case "end":
-							return _context2.stop();
-					}
-				}
-			}, _callee2, this);
-		}));
-
-		function heckIn(_x2) {
-			return _ref2.apply(this, arguments);
-		}
-
-		return heckIn;
-	}()
+	signIn: function signIn(data) {
+		var token = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().post("login", data);
+		return token;
+	},
+	сheckIn: function heckIn(data) {
+		var user = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().post("register", data);
+		return user;
+	}
 });
 
 /***/ }),

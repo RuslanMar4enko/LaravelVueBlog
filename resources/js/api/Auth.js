@@ -1,13 +1,13 @@
 import api from "../config/api";
 
 export default {
-	async signIn(data) {
-		const token = await  api().post("login", data);
+	signIn(data) {
+		const token = api().post("login", data);
 		return token;
 	},
 
-	async сheckIn(data){
-		const user = await  api().post("register", data);
+	сheckIn(data){
+		const user = api().post("register", data);
 		return user;
 	}
 };

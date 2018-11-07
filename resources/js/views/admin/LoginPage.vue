@@ -66,6 +66,7 @@
     					}
 
     				} catch (e) {
+
     					if (e) {
     						this.err = "Incorrect password or email";
     					}
