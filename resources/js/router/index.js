@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home";
 import AdminHome from "../views/admin/Home";
 import ArticlesPage from "../views/admin/Articles/ArticlesPage";
+import CreateArticlesPage from "../views/admin/Articles/CreateArticlesPage";
 import AdminLogin from "../views/admin/LoginPage";
 import CheckIn from "../views/admin/CheckInPage";
 import LanguagePage from "../views/admin/Language/LanguagePage";
@@ -24,7 +25,7 @@ const routes = [
 		path: "/admin/home",
 		name: "AdminHome",
 		component: AdminHome,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
 	},
 
 	{
@@ -37,35 +38,42 @@ const routes = [
 		path: "/admin/register",
 		name: "CheckIn",
 		component: CheckIn,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
 	},
 
 	{
 		path: "/admin/articles",
 		name: "ArticlesPage",
 		component: ArticlesPage,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/admin/articles/create",
+		name: "CreateArticlesPage",
+		component: CreateArticlesPage,
+		meta: {requiresAuth: true}
 	},
 
 	{
 		path: "/admin/language",
 		name: "LanguagePage",
 		component: LanguagePage,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
 	},
 
 	{
 		path: "/admin/language/create",
 		name: "CreateLangPage",
 		component: CreateLangPage,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
 	},
 
 	{
 		path: "/admin/language/update",
 		name: "UpdateLangPage",
 		component: UpdateLangPage,
-		meta : { requiresAuth : true }
+		meta: {requiresAuth: true}
 	},
 ];
 
@@ -73,15 +81,16 @@ const router = new VueRouter({
 	routes,
 });
 
+
 window.axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
 
 router.beforeEach((to, from, next) => {
-	if(to.meta.requiresAuth) {
-		if(localStorage.getItem("token")) {
+	if (to.meta.requiresAuth) {
+		if (localStorage.getItem("token")) {
 			next();
 		} else {
 			next({
-				path : "/admin/login"
+				path: "/admin/login"
 			});
 		}
 	} else {
