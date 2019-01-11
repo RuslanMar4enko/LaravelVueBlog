@@ -19,6 +19,10 @@ Route::post('/login', 'JwtAuthController@login');
 
 Route::post('/refresh', 'JwtAuthController@refresh');
 Route::post('/register', 'JwtAuthController@register');
+
+Route::get('/category', 'Admin\CategoryController@index');
+
+
 Route::group(['middleware' => 'jwt.auth'], function () {
 
     Route::get('/login/user', 'JwtAuthController@getUser');

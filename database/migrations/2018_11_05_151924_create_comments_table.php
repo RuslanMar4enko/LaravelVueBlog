@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('articles_id', 'comments_articles_id_foreign')->references('id')->on('articles');
             $table->string('email');
             $table->text('text');
-            $table->dateTime('date_posted');
+            $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('PENDING');
             $table->timestamps();
         });
     }

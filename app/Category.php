@@ -12,4 +12,9 @@ class Category extends Model
       'name',
       'language_id'
     ];
+
+    public function language()
+    {
+        return $this->hasOne(Language::class);
+    }
 }
