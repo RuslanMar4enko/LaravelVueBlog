@@ -48,4 +48,14 @@ class LanguageController extends Controller
     {
         return CRUD::delete($language, $id);
     }
+
+
+    /**
+     * @param Language $language
+     * @return Language[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getLanguageAndCategory(Language $language)
+    {
+        return  $language->with('categories')->latest()->get();
+    }
 }
