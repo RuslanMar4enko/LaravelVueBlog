@@ -1,8 +1,9 @@
 import axios from "axios";
 import apiUrl from "./baseURL";
 
-export default () => {
-	return axios.create({
-		baseURL: apiUrl
-	});
-};
+const api = axios.create({
+	baseURL: apiUrl,
+	headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+});
+
+export default api;

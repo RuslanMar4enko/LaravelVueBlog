@@ -11503,11 +11503,12 @@ var CHECKIN = "CHECKIN";
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-	return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
-		baseURL: __WEBPACK_IMPORTED_MODULE_1__baseURL__["a" /* default */]
-	});
+var api = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
+	baseURL: __WEBPACK_IMPORTED_MODULE_1__baseURL__["a" /* default */],
+	headers: { Authorization: "Bearer " + localStorage.getItem("token") }
 });
+
+/* harmony default export */ __webpack_exports__["a"] = (api);
 
 /***/ }),
 /* 7 */
@@ -47458,8 +47459,6 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 	routes: routes
 });
 
-window.axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
-
 router.beforeEach(function (to, from, next) {
 	if (to.meta.requiresAuth) {
 		if (localStorage.getItem("token")) {
@@ -50175,6 +50174,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
@@ -50187,28 +50191,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v(" Home ")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          { staticClass: "card card-default" },
+          [
+            _c("div", { staticClass: "card-header" }, [_vm._v(" Home")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    Laravel 5\n                ")
+              _vm._v("\n          Laravel 5\n        ")
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "AdminHome" } } }, [
+              _c("div", { staticClass: "logo" }, [
+                _vm._v("\n            AdminLogo\n          ")
+              ])
             ])
-          ])
-        ])
+          ],
+          1
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -50583,7 +50591,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Auth__ = __webpack_require__(84);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -50622,56 +50630,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			username: null,
+			email: null,
 			password: null,
 			err: null
 		};
 	},
 	mounted: function mounted() {
-		if (localStorage.getItem("token")) {
-			this.$router.push({ name: "AdminHome" });
-		}
+		this.ifSignIn();
 	},
 
 
 	methods: {
-		login: function () {
+		singIn: function () {
 			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-				var results, valid, token;
+				var isValid, email, password, auth, token;
 				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								results = Promise.all([this.$validator.validate("username"), this.$validator.validate("password")]);
-								_context.next = 3;
-								return results;
+								_context.next = 2;
+								return this.$validator.validateAll();
 
-							case 3:
-								_context.t0 = function (isValid) {
-									return isValid;
-								};
+							case 2:
+								isValid = _context.sent;
 
-								valid = _context.sent.every(_context.t0);
-
-								if (!valid) {
+								if (!isValid) {
 									_context.next = 17;
 									break;
 								}
 
-								_context.prev = 6;
-								_context.next = 9;
-								return this.$store.dispatch("signIn", {
-									email: this.username,
-									password: this.password
+								_context.prev = 4;
+								email = this.email, password = this.password;
+								_context.next = 8;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].signIn({
+									email: email,
+									password: password
 								});
 
-							case 9:
-								token = _context.sent;
+							case 8:
+								auth = _context.sent;
+								token = auth.data.token;
 
-								if (token.data.token) {
-									localStorage.setItem("token", token.data.token);
-									this.$store.commit(__WEBPACK_IMPORTED_MODULE_1__store_modules_auth_mutation_types__["b" /* TOKEN */], token.data.token);
-									location.reload();
+								if (token) {
+									localStorage.setItem("token", token);
 									this.$router.push({ name: "AdminHome" });
 								}
 
@@ -50680,28 +50681,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 							case 13:
 								_context.prev = 13;
-								_context.t1 = _context["catch"](6);
+								_context.t0 = _context["catch"](4);
 
-
-								if (_context.t1) {
+								if (_context.t0) {
 									this.err = "Incorrect password or email";
 								}
-								this.getErrors(_context.t1);
+								this.getErrors(_context.t0);
 
 							case 17:
 							case "end":
 								return _context.stop();
 						}
 					}
-				}, _callee, this, [[6, 13]]);
+				}, _callee, this, [[4, 13]]);
 			}));
 
-			function login() {
+			function singIn() {
 				return _ref.apply(this, arguments);
 			}
 
-			return login;
-		}()
+			return singIn;
+		}(),
+		ifSignIn: function ifSignIn() {
+			if (localStorage.getItem("token")) {
+				this.$router.push({ name: "AdminHome" });
+			}
+		}
 	}
 
 });
@@ -51494,20 +51499,16 @@ var render = function() {
         _c("div", { staticClass: "login-form" }, [
           _vm.err
             ? _c("small", { staticClass: "form-text text-danger" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.err) +
-                    "\n                "
-                )
+                _vm._v("\n          " + _vm._s(_vm.err) + "\n        ")
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.errors.has("username")
+          _vm.errors.has("email")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.errors.first("username")) +
-                    "\n                "
+                  "\n          " +
+                    _vm._s(_vm.errors.first("email")) +
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -51517,8 +51518,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.username,
-                expression: "username"
+                value: _vm.email,
+                expression: "email"
               },
               {
                 name: "validate",
@@ -51531,16 +51532,16 @@ var render = function() {
             attrs: {
               type: "text",
               placeholder: "email",
-              name: "username",
+              name: "email",
               "data-vv-as": "email"
             },
-            domProps: { value: _vm.username },
+            domProps: { value: _vm.email },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.username = $event.target.value
+                _vm.email = $event.target.value
               }
             }
           }),
@@ -51548,9 +51549,9 @@ var render = function() {
           _vm.errors.has("password")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n          " +
                     _vm._s(_vm.errors.first("password")) +
-                    "\n                "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -51588,9 +51589,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("button", { staticClass: "login-btn", on: { click: _vm.login } }, [
-            _vm._v("login")
-          ])
+          _c(
+            "button",
+            { staticClass: "login-btn", on: { click: _vm.singIn } },
+            [_vm._v("login")]
+          )
         ])
       ])
     ])
@@ -53733,18 +53736,68 @@ var сheckIn = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_api__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_api__ = __webpack_require__(6);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-	signIn: function signIn(data) {
-		var token = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().post("login", data);
-		return token;
-	},
-	сheckIn: function heckIn(data) {
-		var user = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().post("register", data);
-		return user;
-	}
+	signIn: function () {
+		var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(payload) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+				while (1) {
+					switch (_context.prev = _context.next) {
+						case 0:
+							_context.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("login", payload);
+
+						case 2:
+							response = _context.sent;
+							return _context.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context.stop();
+					}
+				}
+			}, _callee, this);
+		}));
+
+		function signIn(_x) {
+			return _ref.apply(this, arguments);
+		}
+
+		return signIn;
+	}(),
+	сheckIn: function () {
+		var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(payload) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+				while (1) {
+					switch (_context2.prev = _context2.next) {
+						case 0:
+							response = __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("register", payload);
+							return _context2.abrupt("return", response);
+
+						case 2:
+						case "end":
+							return _context2.stop();
+					}
+				}
+			}, _callee2, this);
+		}));
+
+		function heckIn(_x2) {
+			return _ref2.apply(this, arguments);
+		}
+
+		return heckIn;
+	}()
 });
 
 /***/ }),
@@ -65733,6 +65786,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -65815,7 +65873,7 @@ var render = function() {
         _vm._v(" "),
         _c("router-link", { attrs: { to: { name: "AdminHome" } } }, [
           _c("div", { staticClass: "logo" }, [
-            _vm._v("\n                AdminLogo\n            ")
+            _vm._v("\n        AdminLogo\n      ")
           ])
         ])
       ],
