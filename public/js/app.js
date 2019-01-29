@@ -51770,16 +51770,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 									});
 									this.name = this.email = this.password = null;
 									this.err = null;
+									this.$validator.reset();
+									this.errors.clear();
 								}
 
 							case 10:
-								this.$validator.reset();
-								this.errors.clear();
-								_context.next = 18;
+								_context.next = 16;
 								break;
 
-							case 14:
-								_context.prev = 14;
+							case 12:
+								_context.prev = 12;
 								_context.t0 = _context["catch"](0);
 
 								if (_context.t0) {
@@ -51787,12 +51787,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								}
 								this.getErrors(_context.t0);
 
-							case 18:
+							case 16:
 							case "end":
 								return _context.stop();
 						}
 					}
-				}, _callee, this, [[0, 14]]);
+				}, _callee, this, [[0, 12]]);
 			}));
 
 			function register() {
@@ -52293,6 +52293,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Language__ = __webpack_require__(90);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -52322,6 +52323,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
@@ -52333,35 +52336,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 	methods: {
 		saveLanguage: function () {
 			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-				var result, valid, lang;
+				var isValid, name, lang;
 				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								result = Promise.all([this.$validator.validate("name")]);
+								_context.prev = 0;
 								_context.next = 3;
-								return result;
+								return this.$validator.validateAll();
 
 							case 3:
-								_context.t0 = function (isValid) {
-									return isValid;
-								};
+								isValid = _context.sent;
 
-								valid = _context.sent.every(_context.t0);
-
-								if (!valid) {
+								if (!isValid) {
 									_context.next = 10;
 									break;
 								}
 
+								name = this.name;
 								_context.next = 8;
-								return this.$store.dispatch("saveLang", {
-									name: this.name
+								return __WEBPACK_IMPORTED_MODULE_1__api_Language__["a" /* default */].saveLang({
+									name: name
 								});
 
 							case 8:
 								lang = _context.sent;
-
 
 								if (lang.status === 201) {
 									this.$notify({
@@ -52372,16 +52371,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 										speed: 500
 									});
 									this.name = null;
-								} else {
-									this.err = "Name or email must be unique";
+									this.$validator.reset();
+									this.errors.clear();
 								}
 
 							case 10:
+								_context.next = 16;
+								break;
+
+							case 12:
+								_context.prev = 12;
+								_context.t0 = _context["catch"](0);
+
+								if (_context.t0) {
+									this.err = "Name or email must be unique";
+								}
+								this.getErrors(_context.t0);
+
+							case 16:
 							case "end":
 								return _context.stop();
 						}
 					}
-				}, _callee, this);
+				}, _callee, this, [[0, 12]]);
 			}));
 
 			function saveLanguage() {
@@ -52408,7 +52420,7 @@ var render = function() {
       _c("div", [
         _vm.err
           ? _c("small", { staticClass: "form-text text-danger" }, [
-              _vm._v("\n                " + _vm._s(_vm.err) + "\n            ")
+              _vm._v("\n        " + _vm._s(_vm.err) + "\n      ")
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -52454,9 +52466,9 @@ var render = function() {
           _vm.errors.has("name")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n          " +
                     _vm._s(_vm.errors.first("name")) +
-                    "\n                "
+                    "\n        "
                 )
               ])
             : _vm._e()

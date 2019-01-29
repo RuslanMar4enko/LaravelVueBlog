@@ -78,10 +78,10 @@
   						});
   						this.name = this.email = this.password = null;
   						this.err = null;
+  						this.$validator.reset();
+  						this.errors.clear();
   					}
   				}
-  				this.$validator.reset();
-  				this.errors.clear();
   			} catch (e) {
   				if (e) {
   					this.err = "Name or email must be unique";
