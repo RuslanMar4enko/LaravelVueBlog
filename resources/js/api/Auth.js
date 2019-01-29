@@ -7,7 +7,7 @@ export default {
 	},
 
 	async сheckIn(payload) {
-		const response = api.post("register", payload);
+		const response = await api.post("register", payload);
 		return response;
 	}
 };

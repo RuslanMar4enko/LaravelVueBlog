@@ -51664,6 +51664,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Auth__ = __webpack_require__(84);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -51712,6 +51713,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -51727,67 +51732,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 	methods: {
 		register: function () {
 			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-				var results, valid;
+				var isValid, name, email, password, сheckIn;
 				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
 								_context.prev = 0;
-								results = Promise.all([this.$validator.validate("name"), this.$validator.validate("email"), this.$validator.validate("password")]);
-								_context.next = 4;
-								return results;
+								_context.next = 3;
+								return this.$validator.validateAll();
 
-							case 4:
-								_context.t0 = function (isValid) {
-									return isValid;
-								};
+							case 3:
+								isValid = _context.sent;
 
-								valid = _context.sent.every(_context.t0);
-
-								if (!valid) {
-									_context.next = 14;
+								if (!isValid) {
+									_context.next = 10;
 									break;
 								}
 
-								_context.next = 9;
-								return this.$store.dispatch("сheckIn", {
-									name: this.name,
-									email: this.email,
-									password: this.password
+								name = this.name, email = this.email, password = this.password;
+								_context.next = 8;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Auth__["a" /* default */].сheckIn({
+									name: name,
+									email: email,
+									password: password
 								});
 
-							case 9:
-								this.$notify({
-									group: "foo",
-									title: "New user",
-									text: "New User created",
-									duration: 8000,
-									speed: 500
-								});
-								this.name = null;
-								this.email = null;
-								this.password = null;
-								this.err = null;
+							case 8:
+								сheckIn = _context.sent;
 
-							case 14:
-								_context.next = 20;
+								if (сheckIn.status === 201) {
+									this.$notify({
+										group: "foo",
+										title: "New user",
+										text: "New User created",
+										duration: 8000,
+										speed: 500
+									});
+									this.name = this.email = this.password = null;
+									this.err = null;
+								}
+
+							case 10:
+								this.$validator.reset();
+								this.errors.clear();
+								_context.next = 18;
 								break;
 
-							case 16:
-								_context.prev = 16;
-								_context.t1 = _context["catch"](0);
+							case 14:
+								_context.prev = 14;
+								_context.t0 = _context["catch"](0);
 
-								if (_context.t1) {
+								if (_context.t0) {
 									this.err = "Name or email must be unique";
 								}
-								this.getErrors(_context.t1);
+								this.getErrors(_context.t0);
 
-							case 20:
+							case 18:
 							case "end":
 								return _context.stop();
 						}
 					}
-				}, _callee, this, [[0, 16]]);
+				}, _callee, this, [[0, 14]]);
 			}));
 
 			function register() {
@@ -51813,7 +51818,7 @@ var render = function() {
       _vm._v(" "),
       _vm.err
         ? _c("small", { staticClass: "form-text text-danger" }, [
-            _vm._v("\n            " + _vm._s(_vm.err) + "\n        ")
+            _vm._v("\n      " + _vm._s(_vm.err) + "\n    ")
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -51826,9 +51831,9 @@ var render = function() {
           _vm.errors.has("name")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n          " +
                     _vm._s(_vm.errors.first("name")) +
-                    "\n                "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -51877,9 +51882,9 @@ var render = function() {
           _vm.errors.has("email")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n          " +
                     _vm._s(_vm.errors.first("email")) +
-                    "\n                "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -51928,9 +51933,9 @@ var render = function() {
           _vm.errors.has("password")
             ? _c("small", { staticClass: "form-text text-danger" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n          " +
                     _vm._s(_vm.errors.first("password")) +
-                    "\n                "
+                    "\n        "
                 )
               ])
             : _vm._e(),
@@ -53781,10 +53786,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
-							response = __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("register", payload);
-							return _context2.abrupt("return", response);
+							_context2.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("register", payload);
 
 						case 2:
+							response = _context2.sent;
+							return _context2.abrupt("return", response);
+
+						case 4:
 						case "end":
 							return _context2.stop();
 					}
