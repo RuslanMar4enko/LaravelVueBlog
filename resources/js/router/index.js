@@ -9,6 +9,7 @@ import CheckIn from "../views/admin/CheckInPage";
 import LanguagePage from "../views/admin/Language/LanguagePage";
 import CreateLangPage from "../views/admin/Language/CreateLangPage";
 import UpdateLangPage from "../views/admin/Language/UpdateLangPage";
+import CategoriesPage from "../views/admin/Categories/CategoriesPage";
 
 Vue.use(VueRouter);
 
@@ -73,6 +74,13 @@ const routes = [
 		path: "/admin/language/update",
 		name: "UpdateLangPage",
 		component: UpdateLangPage,
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/admin/categories",
+		name: "CategoriesPage",
+		component: CategoriesPage,
 		meta: {requiresAuth: true}
 	},
 ];

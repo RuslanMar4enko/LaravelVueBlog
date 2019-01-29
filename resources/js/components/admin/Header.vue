@@ -32,32 +32,31 @@
 </template>
 
 <script>
-    import * as types from "../../store/modules/auth/mutation-types";
-    import api from "../../config/api";
-    export default {
-    	data() {
-    		return {
-    			isActive: false
-    		};
-    	},
-    	methods: {
-    		menuToggle() {
-    			this.isActive = !this.isActive;
-    		},
-    		getSidebarClass() {
-    			return this.isActive ? "active" : "";
-    		},
-    		async logout() {
-    			try {
-    				await api().get("logout");
-    				localStorage.removeItem("token");
-    				this.$store.commit(types.TOKEN, null);
-    				this.$router.push({name: "AdminLogin"});
-    			} catch (e) {
-    				console.log(e);
-    			}
+  import api from "../../config/api";
 
-    		}
-    	}
-    };
+  export default {
+  	data() {
+  		return {
+  			isActive: false
+  		};
+  	},
+  	methods: {
+  		menuToggle() {
+  			this.isActive = !this.isActive;
+  		},
+  		getSidebarClass() {
+  			return this.isActive ? "active" : "";
+  		},
+  		async logout() {
+  			try {
+  				await api.get("logout");
+  				localStorage.removeItem("token");
+  				this.$router.push({name: "AdminLogin"});
+  			} catch (e) {
+  				console.log(e);
+  			}
+
+  		}
+  	}
+  };
 </script>

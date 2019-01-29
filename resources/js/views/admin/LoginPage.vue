@@ -52,7 +52,9 @@
   						email,
   						password
   					});
+  					console.log(auth);
   					const {token} = auth.data;
+  					console.log(token);
   					if (token) {
   						localStorage.setItem("token", token);
   						this.$router.push({name: "AdminHome"});

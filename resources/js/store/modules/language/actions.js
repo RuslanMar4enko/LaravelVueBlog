@@ -1,4 +1,4 @@
-import language from "../../../api/Language";
+import language from "../../../api/Languages";
 import * as types from "./mutation-types";
 
 export const getLang = async ({ commit }) => {

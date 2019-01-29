@@ -9,13 +9,13 @@ use App\Http\Requests\LanguageRequest;
 
 class LanguageController extends Controller
 {
-    /**
-     * @param Language $language
-     * @return mixed
-     */
+  /**
+   * @param Language $language
+   * @return mixed
+   */
     public function index(Language $language)
     {
-        return CRUD::index($language, 10);
+        return $language->latest()->get();
     }
 
     /**

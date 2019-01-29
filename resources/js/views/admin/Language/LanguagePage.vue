@@ -24,12 +24,11 @@
       <router-link :to="{ name: 'CreateLangPage'}">
         <button type="button" class="btn btn-success">Create</button>
       </router-link>
-
     </div>
   </div>
 </template>
 <script>
-  import Lang from "../../../api/Language";
+  import Lang from "../../../api/Languages";
 
   export default {
   	data() {
@@ -44,7 +43,7 @@
   		async getLang() {
   			try {
   				const lang = await Lang.getLang();
-  				const {data} = lang.data;
+  				const {data} = lang;
   				if (data) {
   					this.language = data;
   				}

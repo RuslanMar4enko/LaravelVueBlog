@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import Lang from "../../../api/Language";
+  import Lang from "../../../api/Languages";
 
   export default {
   	data() {

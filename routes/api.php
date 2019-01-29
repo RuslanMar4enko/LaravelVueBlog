@@ -18,15 +18,14 @@ use Illuminate\Http\Request;
 Route::post('/login', 'JwtAuthController@login');
 
 Route::post('/refresh', 'JwtAuthController@refresh');
-Route::post('/register', 'JwtAuthController@register');
 
-Route::get('/category', 'Admin\LanguageController@getLanguageAndCategory');
 
 
 Route::group(['middleware' => 'jwt.auth'], function () {
 
     Route::get('/login/user', 'JwtAuthController@getUser');
     Route::get('/logout', 'JwtAuthController@logout');
+    Route::post('/register', 'JwtAuthController@register');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.auth'], function () {
@@ -40,5 +39,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
     Route::post('/language', 'LanguageController@saveLang');
     Route::put('/language/{id}', 'LanguageController@editLang');
     Route::delete('/language/{id}', 'LanguageController@deleteLang');
+
+    // Categories
+    Route::get('/categories', 'Admin\LanguageController@getLanguageAndCategory');
 
 });
