@@ -52051,6 +52051,13 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Language__ = __webpack_require__(90);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -52079,6 +52086,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -52087,19 +52098,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	mounted: function mounted() {
-		this.$store.dispatch("getLang");
+		this.getLang();
 	},
 
-	computed: {
-		langData: function langData() {
-			return this.$store.getters.language;
-		}
-	},
-	watch: {
-		langData: function langData(_langData) {
-			this.language = _langData.data;
-		}
+	methods: {
+		getLang: function () {
+			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+				var lang, data;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+					while (1) {
+						switch (_context.prev = _context.next) {
+							case 0:
+								_context.prev = 0;
+								_context.next = 3;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Language__["a" /* default */].getLang();
+
+							case 3:
+								lang = _context.sent;
+								data = lang.data.data;
+
+								if (data) {
+									this.language = data;
+								}
+								_context.next = 11;
+								break;
+
+							case 8:
+								_context.prev = 8;
+								_context.t0 = _context["catch"](0);
+
+								console.log(_context.t0);
+
+							case 11:
+							case "end":
+								return _context.stop();
+						}
+					}
+				}, _callee, this, [[0, 8]]);
+			}));
+
+			function getLang() {
+				return _ref.apply(this, arguments);
+			}
+
+			return getLang;
+		}()
 	}
+
 });
 
 /***/ }),
@@ -53949,18 +53994,72 @@ var saveLang = function saveLang(context, payload) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_api__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_api__ = __webpack_require__(6);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-	getLang: function getLang() {
-		var data = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().get("admin/languages");
-		return data;
-	},
-	saveLang: function saveLang(data) {
-		var lang = Object(__WEBPACK_IMPORTED_MODULE_0__config_api__["a" /* default */])().post("admin/language", data);
-		return lang;
-	}
+	getLang: function () {
+		var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+				while (1) {
+					switch (_context.prev = _context.next) {
+						case 0:
+							_context.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].get("admin/languages");
+
+						case 2:
+							response = _context.sent;
+							return _context.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context.stop();
+					}
+				}
+			}, _callee, this);
+		}));
+
+		function getLang() {
+			return _ref.apply(this, arguments);
+		}
+
+		return getLang;
+	}(),
+	saveLang: function () {
+		var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(data) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+				while (1) {
+					switch (_context2.prev = _context2.next) {
+						case 0:
+							_context2.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("admin/language", data);
+
+						case 2:
+							response = _context2.sent;
+							return _context2.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context2.stop();
+					}
+				}
+			}, _callee2, this);
+		}));
+
+		function saveLang(_x) {
+			return _ref2.apply(this, arguments);
+		}
+
+		return saveLang;
+	}()
 });
 
 /***/ }),

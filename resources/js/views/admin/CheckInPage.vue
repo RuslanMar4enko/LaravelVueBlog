@@ -89,8 +89,6 @@
   				this.getErrors(e);
   			}
   		},
-
-
   	}
   };
 </script>

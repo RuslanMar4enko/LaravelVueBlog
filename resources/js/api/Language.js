@@ -1,15 +1,14 @@
 import api from "../config/api";
 
 export default {
-	getLang() {
-		const data =  api().get("admin/languages");
-		return data;
+	async getLang() {
+		const response = await api.get("admin/languages");
+		return response;
 	},
 
-	saveLang(data)
-	{
-		const lang = api().post("admin/language", data);
-		return lang;
+	async saveLang(data) {
+		const response = await api.post("admin/language", data);
+		return response;
 	}
 
 };
