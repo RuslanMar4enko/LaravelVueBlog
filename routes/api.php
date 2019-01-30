@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
     Route::put('/language/{id}', 'LanguageController@editLang');
     Route::delete('/language/{id}', 'LanguageController@deleteLang');
 
-    // Categories
-    Route::get('/categories', 'Admin\LanguageController@getLanguageAndCategory');
 
+    // Categories
+    Route::get('/categories', 'LanguageController@getLanguageAndCategory');
 });

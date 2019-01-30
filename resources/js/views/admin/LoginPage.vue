@@ -52,7 +52,6 @@
   						email,
   						password
   					});
-  					console.log(auth);
   					const {token} = auth.data;
   					console.log(token);
   					if (token) {
