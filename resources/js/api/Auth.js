@@ -9,5 +9,11 @@ export default {
 	async сheckIn(payload) {
 		const response = await api.post("register", payload);
 		return response;
+	},
+
+	async refreshToken() {
+		const response = await api.post("refresh");
+		return response;
 	}
+
 };

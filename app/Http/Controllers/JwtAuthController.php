@@ -6,6 +6,7 @@ use JWTAuth;
 use App\User;
 use App\Facades\CRUD;
 use Illuminate\Support\Facades\Hash;
+use Namshi\JOSE\JWT;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Requests\RegisterFormRequest;
 use Symfony\Component\HttpFoundation\Request;

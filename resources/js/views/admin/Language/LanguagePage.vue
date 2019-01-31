@@ -48,7 +48,7 @@
   					this.language = data;
   				}
   			} catch (e) {
-  				console.log(e);
+
   			}
   		}
   	}
