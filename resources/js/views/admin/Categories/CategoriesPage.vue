@@ -2,14 +2,17 @@
   <div class="main-admin-top container">
     <h1>Category</h1>
     <div class="row">
-      <div class="col-6">
+      <div class="col-5">
         <nav class="navbar navbar-light bg-light">
           <form class="form-inline">
             <input v-model="filter" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           </form>
         </nav>
       </div>
-      <div class="col-6">
+      <div class="col-2">
+
+      </div>
+      <div class="col-5">
         <div class="form-group">
           <select class="form-control" v-model="sort" id="exampleFormControlSelect1">
             <option value="" selected disabled hidden>Sort by</option>

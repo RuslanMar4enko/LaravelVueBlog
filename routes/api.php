@@ -19,6 +19,7 @@ Route::post('/login', 'JwtAuthController@login');
 
 Route::post('/refresh', 'JwtAuthController@refresh');
 
+Route::get('/nested/category', 'Admin\CategoryController@nestedSetGetCategory');
 
 
 Route::group(['middleware' => 'jwt.auth'], function () {

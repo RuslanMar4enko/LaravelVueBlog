@@ -52899,6 +52899,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 
@@ -54351,7 +54354,7 @@ var render = function() {
     _c("h1", [_vm._v("Category")]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "col-5" }, [
         _c("nav", { staticClass: "navbar navbar-light bg-light" }, [
           _c("form", { staticClass: "form-inline" }, [
             _c("input", {
@@ -54383,7 +54386,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "col-2" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-5" }, [
         _c("div", { staticClass: "form-group" }, [
           _c(
             "select",

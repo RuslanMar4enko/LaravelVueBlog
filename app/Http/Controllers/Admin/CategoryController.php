@@ -51,4 +51,10 @@ class CategoryController extends Controller
   {
     return CRUD::delete($category, $id);
   }
+
+  public function nestedSetGetCategory(Category $category)
+  {
+    return $category->get()->toTree();
+  }
+
 }
