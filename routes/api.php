@@ -42,5 +42,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
 
 
     // Categories
-    Route::get('/categories', 'LanguageController@getLanguageAndCategory');
+    Route::get('/categories', 'CategoryController@index');
 });

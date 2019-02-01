@@ -12,14 +12,10 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'language_id',
+        'language',
         '_lft',
         '_rgt',
         'parent_id',
     ];
 
-    public function language()
-    {
-        return $this->belongsTo(Language::class);
-    }
 }

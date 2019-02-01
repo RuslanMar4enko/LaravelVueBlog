@@ -18,8 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             NestedSet::columns($table);
-            $table->integer('language_id')->unsigned();
-            $table->foreign('language_id', 'categories_languages_id_foreign')->references('id')->on('languages');
+            $table->string('language');
             $table->timestamps();
         });
     }

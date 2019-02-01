@@ -51,14 +51,14 @@ class LanguageController extends Controller
   }
 
 
-  /**
-   * @param Language $language
-   * @return Language[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-   */
-  public function getLanguageAndCategory(Language $language)
-  {
-    return $language->with(['categories' => function ($query) {
-      $query->select('id', 'language_id', 'name', 'parent_id');
-    }])->get(['name', 'id']);
-  }
+//  /**
+//   * @param Language $language
+//   * @return Language[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+//   */
+//  public function getLanguageAndCategory(Language $language)
+//  {
+//    return $language->with(['categories' => function ($query) {
+//      $query->select('id', 'language_id', 'name', 'parent_id');
+//    }])->get(['name', 'id']);
+//  }
 }

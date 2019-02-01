@@ -13,50 +13,50 @@ class CategoryTableSeeder extends Seeder
     {
         $shops = [
             [
-                'language_id' => 1,
+                'language' => 'en',
                 'name' => 'Books',
                 'children' => [
                     [
-                        'language_id' => 1,
+                        'language' => 'en',
                         'name' => 'Comic Book',
                         'children' => [
                             ['name' => 'Marvel Comic Book',
-                                'language_id' => 1],
+                                'language' => 'en'],
                             ['name' => 'DC Comic Book',
-                                'language_id' => 1],
-                            ['name' => 'Action comics','language_id' => 1],
+                                'language' => 'en'],
+                            ['name' => 'Action comics','language' => 'en'],
                         ],
                     ],
                     [
-                        'language_id' => 1,
+                        'language' => 'en',
                         'name' => 'Textbooks',
                         'children' => [
-                            ['name' => 'Business', 'language_id' => 1],
-                            ['name' => 'Finance', 'language_id' => 1],
-                            ['name' => 'Computer Science', 'language_id' => 1],
+                            ['name' => 'Business', 'language' => 'en'],
+                            ['name' => 'Finance', 'language' => 'en'],
+                            ['name' => 'Computer Science', 'language' => 'en'],
                         ],
                     ],
                 ],
             ],
             [
-                'language_id' => 1,
+                'language' => 'en',
                 'name' => 'Electronics',
                 'children' => [
                     [
                         'name' => 'TV',
-                        'language_id' => 1,
+                        'language' => 'en',
                         'children' => [
-                            ['name' => 'LED', 'language_id' => 1],
-                            ['name' => 'Blu-ray', 'language_id' => 1],
+                            ['name' => 'LED', 'language' => 'en'],
+                            ['name' => 'Blu-ray', 'language' => 'en'],
                         ],
                     ],
                     [
                         'language_id' => 1,
                         'name' => 'Mobile',
                         'children' => [
-                            ['name' => 'Samsung', 'language_id' => 1],
-                            ['name' => 'iPhone', 'language_id' => 1],
-                            ['name' => 'Xiomi', 'language_id' => 1],
+                            ['name' => 'Samsung', 'language' => 'en'],
+                            ['name' => 'iPhone', 'language' => 'en'],
+                            ['name' => 'Xiomi', 'language' => 'en'],
                         ],
                     ],
                 ],

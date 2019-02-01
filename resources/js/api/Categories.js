@@ -1,8 +1,8 @@
 import api from "../config/api";
 
 export default {
-	async getCategories(){
-		const response = await api.get("admin/categories");
+	async getCategories(url){
+		const response = await api.get(url);
 		return response;
 	}
 };
