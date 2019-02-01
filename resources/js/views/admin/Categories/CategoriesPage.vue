@@ -54,7 +54,10 @@
 </template>
 
 <script>
+  /* eslint-disable no-undef */
+
   import Category from "../../../api/Categories";
+  // import pagination from "laravel-vue-pagination";
   import pagination from "laravel-vue-pagination";
 
   export default {
