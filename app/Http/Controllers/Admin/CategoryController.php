@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Facades\CRUD;
 use App\Category;
@@ -52,9 +51,13 @@ class CategoryController extends Controller
     return CRUD::delete($category, $id);
   }
 
+  /**
+   * @param Category $category
+   * @return mixed
+   */
   public function nestedSetGetCategory(Category $category)
   {
-    return $category->get()->toTree();
+    return $category->getNestedFromCategory()->toTree();
   }
 
 }

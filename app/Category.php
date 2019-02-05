@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Kalnoy\Nestedset\NodeTrait;
 class Category extends Model
 {
@@ -17,5 +18,12 @@ class Category extends Model
         '_rgt',
         'parent_id',
     ];
+
+
+  public function getNestedFromCategory()
+  {
+    return $this->select('name as title', 'id', DB::raw('1 as expanded'), '_lft', '_rgt', 'parent_id')->get();
+  }
+
 
 }

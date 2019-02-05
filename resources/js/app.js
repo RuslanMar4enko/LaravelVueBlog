@@ -15,9 +15,11 @@ import i18n from "./plugins/lang";
 import getErrors from "./plugins/GetErrors";
 import "./plugins/vee-validate";
 import Notifications from "vue-notification";
+import VTree from "vue-tree-halower";
 
 Vue.use(Notifications);
 Vue.use(getErrors);
+Vue.use(VTree);
 
 /**
  * Main App.

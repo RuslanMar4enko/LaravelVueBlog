@@ -19,8 +19,6 @@ Route::post('/login', 'JwtAuthController@login');
 
 Route::post('/refresh', 'JwtAuthController@refresh');
 
-Route::get('/nested/category', 'Admin\CategoryController@nestedSetGetCategory');
-
 
 Route::group(['middleware' => 'jwt.auth'], function () {
 
@@ -44,4 +42,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
 
     // Categories
     Route::get('/categories', 'CategoryController@index');
+    Route::get('/nested/category', 'CategoryController@nestedSetGetCategory');
+
 });

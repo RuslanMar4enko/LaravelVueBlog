@@ -10,6 +10,7 @@ import LanguagePage from "../views/admin/Language/LanguagePage";
 import CreateLangPage from "../views/admin/Language/CreateLangPage";
 import UpdateLangPage from "../views/admin/Language/UpdateLangPage";
 import CategoriesPage from "../views/admin/Categories/CategoriesPage";
+import TreePageCategories from "../views/admin/Categories/TreePageCategories";
 
 Vue.use(VueRouter);
 
@@ -81,6 +82,13 @@ const routes = [
 		path: "/admin/categories",
 		name: "CategoriesPage",
 		component: CategoriesPage,
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/admin/categories/tree",
+		name: "TreePageCategories",
+		component: TreePageCategories,
 		meta: {requiresAuth: true}
 	},
 ];

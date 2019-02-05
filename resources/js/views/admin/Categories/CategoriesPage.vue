@@ -2,20 +2,22 @@
   <div class="main-admin-top container">
     <h1>Category</h1>
     <div class="row">
-      <div class="col-5">
-        <nav class="navbar navbar-light bg-light">
-          <form class="form-inline">
-            <input v-model="filter" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          </form>
-        </nav>
+      <div class="col-5 col-xs-12">
+        <form class="form-group">
+          <input v-model="filter" class="form-control" type="search" placeholder="Search on page" aria-label="Search">
+        </form>
       </div>
-      <div class="col-2">
-
+      <div class="col-2 col-xs-12">
+        <div class="tree-icons">
+          <router-link data-description="Show Tree categories!" :to="{ name: 'TreePageCategories'}">
+            <span class="fa fa-code-fork" aria-hidden="true"> </span>
+          </router-link>
+        </div>
       </div>
-      <div class="col-5">
+      <div class="col-5 col-xs-12">
         <div class="form-group">
           <select class="form-control" v-model="sort" id="exampleFormControlSelect1">
-            <option value="" selected disabled hidden>Sort by</option>
+            <option value="" selected disabled hidden>Sort by page</option>
             <option v-for="item in options" :value="item.value">{{item.label}}</option>
           </select>
         </div>
@@ -31,7 +33,7 @@
         <th scope="col">Action</th>
       </tr>
       </thead>
-      <tbody v-for="item in categorySearc? categorySearc : category">
+      <tbody v-for="item in ifSearch()">
       <tr>
         <th scope="row">{{item.id}}</th>
         <td>{{item.name}}</td>
@@ -57,15 +59,14 @@
   /* eslint-disable no-undef */
 
   import Category from "../../../api/Categories";
-  // import pagination from "laravel-vue-pagination";
   import pagination from "laravel-vue-pagination";
 
   export default {
   	data() {
   		return {
+  			paginate: {},
   			category: null,
   			categorySearc: null,
-  			paginate: null,
   			sort: "",
   			filter: "",
   			options: [
@@ -103,7 +104,7 @@
   	methods: {
   		async getCategories(page = 1) {
   			try {
-  				const url = "admin/categories?page=" + page;
+  				const url = "/api/admin/categories?page=" + page;
   				const categories = await Category.getCategories(url);
   				if (categories.status === 200) {
   					this.category = categories.data.data;
@@ -111,6 +112,10 @@
   				}
   			} catch (e) {
   			}
+  		},
+
+  		ifSearch(){
+  			return this.categorySearc ? this.categorySearc : this.category;
   		},
   	}
   };
