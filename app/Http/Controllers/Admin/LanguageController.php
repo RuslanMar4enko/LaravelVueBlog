@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
 use App\Language;
 use App\Facades\CRUD;
 use App\Http\Controllers\Controller;
@@ -49,16 +48,4 @@ class LanguageController extends Controller
   {
     return CRUD::delete($language, $id);
   }
-
-
-//  /**
-//   * @param Language $language
-//   * @return Language[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-//   */
-//  public function getLanguageAndCategory(Language $language)
-//  {
-//    return $language->with(['categories' => function ($query) {
-//      $query->select('id', 'language_id', 'name', 'parent_id');
-//    }])->get(['name', 'id']);
-//  }
 }

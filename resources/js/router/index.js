@@ -11,6 +11,7 @@ import CreateLangPage from "../views/admin/Language/CreateLangPage";
 import UpdateLangPage from "../views/admin/Language/UpdateLangPage";
 import CategoriesPage from "../views/admin/Categories/CategoriesPage";
 import TreePageCategories from "../views/admin/Categories/TreePageCategories";
+import CreateCategoryPage from "../views/admin/Categories/CreateCategoryPage";
 
 Vue.use(VueRouter);
 
@@ -91,6 +92,15 @@ const routes = [
 		component: TreePageCategories,
 		meta: {requiresAuth: true}
 	},
+
+	{
+		path: "/admin/categories/create",
+		name: "CreateCategoryPage",
+		component: CreateCategoryPage,
+		meta: {requiresAuth: true}
+	},
+
+
 ];
 
 const router = new VueRouter({

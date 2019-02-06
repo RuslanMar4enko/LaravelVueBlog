@@ -1,6 +1,9 @@
 <template>
   <div class="main-admin-top container">
     <h1>Category</h1>
+    <div class="btn-cat">
+      <router-link :to="{ name: 'CreateCategoryPage'}" class="btn btn-success">Create Category</router-link>
+    </div>
     <div class="row">
       <div class="col-5 col-xs-12">
         <form class="form-group">

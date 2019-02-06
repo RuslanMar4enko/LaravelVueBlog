@@ -13570,6 +13570,10 @@ a.text-dark:focus {
   width: 100%;
 }
 
+.btn-cat {
+  margin-bottom: 20px;
+}
+
 .tree-icons {
   text-align: center;
 }

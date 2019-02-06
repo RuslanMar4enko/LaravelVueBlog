@@ -10,10 +10,6 @@
 <script>
   import "vue-tree-halower/dist/halower-tree.min.css";
   import Category from "../../../api/Categories";
-
-
-
-
   export default {
   	data() {
   		return {

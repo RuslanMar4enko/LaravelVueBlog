@@ -60,4 +60,13 @@ class CategoryController extends Controller
     return $category->getNestedFromCategory()->toTree();
   }
 
+  /**
+   * @param Category $category
+   * @return mixed
+   */
+  public function getSelectNested(Category $category)
+  {
+    return $category->getSelectNested()->toTree();
+  }
+
 }

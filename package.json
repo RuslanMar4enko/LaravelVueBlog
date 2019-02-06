@@ -27,6 +27,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "@riophae/vue-treeselect": "0.0.38",
         "array-to-tree": "^3.3.0",
         "eslint-plugin-html": "^4.0.6",
         "font-awesome-scss": "^1.0.0",

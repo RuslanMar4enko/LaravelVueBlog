@@ -43,5 +43,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
     // Categories
     Route::get('/categories', 'CategoryController@index');
     Route::get('/nested/category', 'CategoryController@nestedSetGetCategory');
+    Route::get('/nested/category/select', 'CategoryController@getSelectNested');
+    Route::post('/category/create', 'CategoryController@create');
 
 });
