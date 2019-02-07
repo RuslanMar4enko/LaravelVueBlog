@@ -72,7 +72,9 @@ class JwtAuthController extends Controller
 
     }
 
-
+  /**
+   * @return array
+   */
     public function getUser()
     {
         return ['user' => Auth::user()];

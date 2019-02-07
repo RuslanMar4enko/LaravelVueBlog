@@ -1,10 +1,6 @@
 <template>
   <div class="main-admin-top container">
-    <h1> Create Categories</h1>
-    <div class="form-group">
-      <label>Parent Category (optional field) </label>
-      <treeselect v-model="parent_id" :multiple="false" :options="options"/>
-    </div>
+    <h1> Update Categories</h1>
     <div class="form-group">
       <label for="exampleFormControlSelect1">Language</label>
       <select v-model="language" class="form-control" id="exampleFormControlSelect1"
@@ -29,7 +25,7 @@
         {{ errors.first('name') }}
       </small>
     </div>
-    <button @click="createCategory" type="submit" class="btn btn-success">Submit</button>
+    <button @click="updateCategory" type="submit" class="btn btn-success">Submit</button>
   </div>
 </template>
 
@@ -42,6 +38,7 @@
   export default {
   	data() {
   		return {
+  			categoryId: null,
   			parent_id: null,
   			options: [],
   			language: null,
@@ -53,6 +50,7 @@
   		Treeselect
   	},
   	mounted() {
+  		this.categoryId = this.$route.params.id;
   		this.getCategorySelect();
   	},
 
@@ -60,6 +58,7 @@
   		async getCategorySelect() {
   			const category = await Category.nestedSetGetCategorySelect();
   			this.options = category.data;
+  			this.showCategory();
   			this.getLang();
   		},
   		async getLang() {
@@ -73,21 +72,34 @@
 
   			}
   		},
-  		async createCategory() {
+  		async showCategory() {
+  			try {
+  				const category = await Category.showCategories(this.categoryId);
+  				if (category.status === 200) {
+  					this.name = category.data.name;
+  					this.language = category.data.language;
+  					this.parent_id = category.data.parent_id;
+  				}
+  			} catch (e) {
+
+  			}
+  		},
+  		async updateCategory() {
   			try {
   				const isValid = await this.$validator.validateAll();
   				if (isValid) {
   					const {name, language, parent_id} = this;
-  					const category = await Category.createCategory({
+  					const category = await Category.updateCategories({
   						name,
   						language,
   						parent_id,
-  					});
-  					if (category.status === 201) {
+  					}, this.categoryId);
+  					console.log(category);
+  					if (category.status === 200) {
   						this.$notify({
   							group: "foo",
-  							title: "New Category",
-  							text: "New Category created",
+  							title: "Update Category",
+  							text: "Update Category",
   							duration: 8000,
   							speed: 500
   						});

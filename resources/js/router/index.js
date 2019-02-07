@@ -12,6 +12,7 @@ import UpdateLangPage from "../views/admin/Language/UpdateLangPage";
 import CategoriesPage from "../views/admin/Categories/CategoriesPage";
 import TreePageCategories from "../views/admin/Categories/TreePageCategories";
 import CreateCategoryPage from "../views/admin/Categories/CreateCategoryPage";
+import UpdateCategoryPage from "../views/admin/Categories/UpdateCategoryPage";
 
 Vue.use(VueRouter);
 
@@ -100,6 +101,12 @@ const routes = [
 		meta: {requiresAuth: true}
 	},
 
+	{
+		path: "/admin/categories/update/:id",
+		name: "UpdateCategoryPage",
+		component: UpdateCategoryPage,
+		meta: {requiresAuth: true}
+	},
 
 ];
 

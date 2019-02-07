@@ -43,8 +43,10 @@
         <td>{{item.parent_id}}</td>
         <td>{{item.language}}</td>
         <td>
-          <span class="fa fa-trash actions-icons delete-action" aria-hidden="true"></span>
-          <span class="fa fa-pencil-square actions-icons update-action" aria-hidden="true"></span>
+          <span @click="deleteCategory(item.id)" class="fa fa-trash actions-icons delete-action"
+                aria-hidden="true"></span>
+          <router-link :to="{name: 'UpdateCategoryPage', params: { id: item.id }}"><span class="fa fa-pencil-square actions-icons update-action"
+                                                           aria-hidden="true"></span></router-link>
         </td>
       </tr>
       </tbody>
@@ -117,7 +119,36 @@
   			}
   		},
 
-  		ifSearch(){
+  		async deleteCategory(id) {
+  			try {
+  				const conf = await this.$swal({
+  					title: "IMPORTANT!",
+  					text: "Any descendant that node has will also be deleted!",
+  					type: "warning",
+  					showCancelButton: true,
+  					confirmButtonColor: "#3085d6",
+  					cancelButtonColor: "#d33",
+  				});
+  				if (conf.value) {
+  					const category = await Category.deleteCategory(id);
+  					if (category.status === 200) {
+  						this.$notify({
+  							group: "foo",
+  							title: "Category delete",
+  							text: "Category delete",
+  							duration: 8000,
+  							speed: 500
+  						});
+  						this.$router.push({name: "TreePageCategories"});
+  					}
+  				}
+
+  			} catch (e) {
+
+  			}
+  		},
+
+  		ifSearch() {
   			return this.categorySearc ? this.categorySearc : this.category;
   		},
   	}

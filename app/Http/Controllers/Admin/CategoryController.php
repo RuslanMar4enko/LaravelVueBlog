@@ -19,6 +19,11 @@ class CategoryController extends Controller
     return $category->select('id', 'language', 'name', 'parent_id')->paginate(10);
   }
 
+  public function show(Category $category, $id)
+  {
+    return CRUD::show($category, $id);
+  }
+
   /**
    * @param Category $category
    * @param CategoryRequest $request

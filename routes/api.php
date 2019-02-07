@@ -22,9 +22,11 @@ Route::post('/refresh', 'JwtAuthController@refresh');
 
 Route::group(['middleware' => 'jwt.auth'], function () {
 
+    //User
     Route::get('/login/user', 'JwtAuthController@getUser');
     Route::get('/logout', 'JwtAuthController@logout');
     Route::post('/register', 'JwtAuthController@register');
+
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.auth'], function () {
@@ -42,8 +44,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
 
     // Categories
     Route::get('/categories', 'CategoryController@index');
+    Route::get('/categories/show/{id}', 'CategoryController@show');
     Route::get('/nested/category', 'CategoryController@nestedSetGetCategory');
     Route::get('/nested/category/select', 'CategoryController@getSelectNested');
     Route::post('/category/create', 'CategoryController@create');
+    Route::delete('/category/delete/{id}', 'CategoryController@delete');
+    Route::put('/category/update/{id}', 'CategoryController@update');
 
 });

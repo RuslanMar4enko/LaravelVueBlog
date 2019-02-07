@@ -49,9 +49,7 @@
   							duration: 8000,
   							speed: 500
   						});
-  						this.name = null;
-  						this.$validator.reset();
-  						this.errors.clear();
+  						this.$router.push({name: "LanguagePage"});
   					}
   				}
 

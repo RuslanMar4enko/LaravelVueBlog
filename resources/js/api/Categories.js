@@ -5,7 +5,6 @@ export default {
 		const response = await api.get(url);
 		return response;
 	},
-
 	async nestedSetGetCategory() {
 		const response = await api.get("/api/admin/nested/category");
 		return response;
@@ -16,6 +15,18 @@ export default {
 	},
 	async createCategory(payload) {
 		const response = await api.post("/api/admin/category/create", payload);
+		return response;
+	},
+	async deleteCategory(id) {
+		const response = await api.delete(`/api/admin/category/delete/${id}`);
+		return response;
+	},
+	async showCategories(id) {
+		const response = await api.get(`/api/admin/categories/show/${id}`);
+		return response;
+	},
+	async updateCategories(payload, id) {
+		const response = await api.put(`/api/admin/category/update/${id}`, payload);
 		return response;
 	},
 };
