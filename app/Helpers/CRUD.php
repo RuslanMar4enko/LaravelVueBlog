@@ -80,7 +80,8 @@ class CRUD
     {
         try {
             $model = $this->show($model, $id);
-            return ['status' => $model->delete()];
+            $model->delete();
+            return ['status' => $model];
 
         } catch (\Exception $exception) {
             return response()->json('Error', 406);

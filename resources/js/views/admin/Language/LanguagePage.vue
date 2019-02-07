@@ -15,7 +15,8 @@
           <th scope="row">{{item.id}}</th>
           <td>{{item.name}}</td>
           <td>
-            <span class="fa fa-trash actions-icons delete-action" aria-hidden="true"></span>
+            <span @click="deleteLang(item.id)" class="fa fa-trash actions-icons delete-action"
+                  aria-hidden="true"></span>
             <span class="fa fa-pencil-square actions-icons update-action" aria-hidden="true"></span>
           </td>
         </tr>
@@ -47,6 +48,28 @@
   				if (data) {
   					this.language = data;
   				}
+  			} catch (e) {
+
+  			}
+  		},
+
+  		async deleteLang(id) {
+  			try {
+  				const category = await Lang.deleteLang(id);
+  				if (category.status === 200) {
+  					console.log([category.data.status]);
+  					const index = this.language.findIndex(s => s.id === category.data.status.id);
+  					this.language.splice(index, 1);
+  					this.$notify({
+  						group: "foo",
+  						title: "Language delete",
+  						text: "Language delete",
+  						duration: 8000,
+  						speed: 500
+  					});
+  				}
+
+
   			} catch (e) {
 
   			}

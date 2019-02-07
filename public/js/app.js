@@ -11755,6 +11755,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 		}
 
 		return saveLang;
+	}(),
+	deleteLang: function () {
+		var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(id) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+				while (1) {
+					switch (_context3.prev = _context3.next) {
+						case 0:
+							_context3.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].delete("/api/admin/language/" + id);
+
+						case 2:
+							response = _context3.sent;
+							return _context3.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context3.stop();
+					}
+				}
+			}, _callee3, this);
+		}));
+
+		function deleteLang(_x2) {
+			return _ref3.apply(this, arguments);
+		}
+
+		return deleteLang;
 	}()
 });
 
@@ -53197,6 +53225,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -53249,6 +53278,57 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			}
 
 			return getLang;
+		}(),
+		deleteLang: function () {
+			var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(id) {
+				var category, index;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+					while (1) {
+						switch (_context2.prev = _context2.next) {
+							case 0:
+								_context2.prev = 0;
+								_context2.next = 3;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Languages__["a" /* default */].deleteLang(id);
+
+							case 3:
+								category = _context2.sent;
+
+								if (category.status === 200) {
+									console.log([category.data.status]);
+									index = this.language.findIndex(function (s) {
+										return s.id === category.data.status.id;
+									});
+
+									this.language.splice(index, 1);
+									this.$notify({
+										group: "foo",
+										title: "Language delete",
+										text: "Language delete",
+										duration: 8000,
+										speed: 500
+									});
+								}
+
+								_context2.next = 9;
+								break;
+
+							case 7:
+								_context2.prev = 7;
+								_context2.t0 = _context2["catch"](0);
+
+							case 9:
+							case "end":
+								return _context2.stop();
+						}
+					}
+				}, _callee2, this, [[0, 7]]);
+			}));
+
+			function deleteLang(_x) {
+				return _ref2.apply(this, arguments);
+			}
+
+			return deleteLang;
 		}()
 	}
 
@@ -53284,7 +53364,23 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(item.name))]),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c("td", [
+                    _c("span", {
+                      staticClass: "fa fa-trash actions-icons delete-action",
+                      attrs: { "aria-hidden": "true" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteLang(item.id)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass:
+                        "fa fa-pencil-square actions-icons update-action",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ])
                 ])
               ])
             })
@@ -53317,22 +53413,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("span", {
-        staticClass: "fa fa-trash actions-icons delete-action",
-        attrs: { "aria-hidden": "true" }
-      }),
-      _vm._v(" "),
-      _c("span", {
-        staticClass: "fa fa-pencil-square actions-icons update-action",
-        attrs: { "aria-hidden": "true" }
-      })
     ])
   }
 ]

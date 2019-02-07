@@ -9,6 +9,11 @@ export default {
 	async saveLang(data) {
 		const response = await api.post("/api/admin/language", data);
 		return response;
-	}
+	},
+
+	async deleteLang(id) {
+		const response = await api.delete(`/api/admin/language/${id}`);
+		return response;
+	},
 
 };
