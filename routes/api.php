@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'jwt.
 
     //Language
     Route::get('/languages', 'LanguageController@index');
+    Route::get('/languages/{id}', 'LanguageController@show');
     Route::post('/language', 'LanguageController@saveLang');
     Route::put('/language/{id}', 'LanguageController@editLang');
     Route::delete('/language/{id}', 'LanguageController@deleteLang');

@@ -11728,15 +11728,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 		return getLang;
 	}(),
-	saveLang: function () {
-		var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(data) {
+	showLang: function () {
+		var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(id) {
 			var response;
 			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
 							_context2.next = 2;
-							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("/api/admin/language", data);
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].get("/api/admin/languages/" + id);
 
 						case 2:
 							response = _context2.sent;
@@ -11750,21 +11750,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			}, _callee2, this);
 		}));
 
-		function saveLang(_x) {
+		function showLang(_x) {
 			return _ref2.apply(this, arguments);
 		}
 
-		return saveLang;
+		return showLang;
 	}(),
-	deleteLang: function () {
-		var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(id) {
+	saveLang: function () {
+		var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(data) {
 			var response;
 			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
 				while (1) {
 					switch (_context3.prev = _context3.next) {
 						case 0:
 							_context3.next = 2;
-							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].delete("/api/admin/language/" + id);
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].post("/api/admin/language", data);
 
 						case 2:
 							response = _context3.sent;
@@ -11778,11 +11778,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			}, _callee3, this);
 		}));
 
-		function deleteLang(_x2) {
+		function saveLang(_x2) {
 			return _ref3.apply(this, arguments);
 		}
 
+		return saveLang;
+	}(),
+	deleteLang: function () {
+		var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(id) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+				while (1) {
+					switch (_context4.prev = _context4.next) {
+						case 0:
+							_context4.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].delete("/api/admin/language/" + id);
+
+						case 2:
+							response = _context4.sent;
+							return _context4.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context4.stop();
+					}
+				}
+			}, _callee4, this);
+		}));
+
+		function deleteLang(_x3) {
+			return _ref4.apply(this, arguments);
+		}
+
 		return deleteLang;
+	}(),
+	updateLang: function () {
+		var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(payload, id) {
+			var response;
+			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+				while (1) {
+					switch (_context5.prev = _context5.next) {
+						case 0:
+							_context5.next = 2;
+							return __WEBPACK_IMPORTED_MODULE_1__config_api__["a" /* default */].put("/api/admin/language/" + id, payload);
+
+						case 2:
+							response = _context5.sent;
+							return _context5.abrupt("return", response);
+
+						case 4:
+						case "end":
+							return _context5.stop();
+					}
+				}
+			}, _callee5, this);
+		}));
+
+		function updateLang(_x4, _x5) {
+			return _ref5.apply(this, arguments);
+		}
+
+		return updateLang;
 	}()
 });
 
@@ -48566,7 +48622,7 @@ var routes = [{
 	component: __WEBPACK_IMPORTED_MODULE_9__views_admin_Language_CreateLangPage___default.a,
 	meta: { requiresAuth: true }
 }, {
-	path: "/admin/language/update",
+	path: "/admin/language/update/:id",
 	name: "UpdateLangPage",
 	component: __WEBPACK_IMPORTED_MODULE_10__views_admin_Language_UpdateLangPage___default.a,
 	meta: { requiresAuth: true }
@@ -53364,23 +53420,40 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(item.name))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c("span", {
-                      staticClass: "fa fa-trash actions-icons delete-action",
-                      attrs: { "aria-hidden": "true" },
-                      on: {
-                        click: function($event) {
-                          _vm.deleteLang(item.id)
+                  _c(
+                    "td",
+                    [
+                      _c("span", {
+                        staticClass: "fa fa-trash actions-icons delete-action",
+                        attrs: { "aria-hidden": "true" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteLang(item.id)
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", {
-                      staticClass:
-                        "fa fa-pencil-square actions-icons update-action",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ])
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "UpdateLangPage",
+                              params: { id: item.id }
+                            }
+                          }
+                        },
+                        [
+                          _c("span", {
+                            staticClass:
+                              "fa fa-pencil-square actions-icons update-action",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 ])
               ])
             })
@@ -53689,7 +53762,7 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(187)
 /* template */
 var __vue_template__ = __webpack_require__(82)
 /* template functional */
@@ -53737,16 +53810,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "main-admin-top container" }, [
+      _c("h1", [_vm._v("Update Language")]),
+      _vm._v(" "),
+      _c("div", [
+        _vm.err
+          ? _c("small", { staticClass: "form-text text-danger" }, [
+              _vm._v("\n        " + _vm._s(_vm.err) + "\n      ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputLanguage" } }, [
+            _vm._v("Name Language")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|max:2",
+                expression: "'required|max:2'"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "exampleInputLanguage",
+              placeholder: "Language",
+              name: "name",
+              "data-vv-as": "Language"
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.errors.has("name")
+            ? _c("small", { staticClass: "form-text text-danger" }, [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.errors.first("name")) +
+                    "\n        "
+                )
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "submit" },
+            on: { click: _vm.upfateLanguage }
+          },
+          [_vm._v("Submit")]
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("azazazazazazaz")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -75157,6 +75295,167 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3b89787a", module.exports)
   }
 }
+
+/***/ }),
+/* 187 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_Languages__ = __webpack_require__(7);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			name: null,
+			landId: null,
+			err: null
+		};
+	},
+	mounted: function mounted() {
+		this.landId = this.$route.params.id;
+		this.showLang();
+	},
+
+	methods: {
+		showLang: function () {
+			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+				var lang;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+					while (1) {
+						switch (_context.prev = _context.next) {
+							case 0:
+								_context.prev = 0;
+								_context.next = 3;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Languages__["a" /* default */].showLang(this.landId);
+
+							case 3:
+								lang = _context.sent;
+
+								if (lang.status === 200) {
+									this.name = lang.data.name;
+								}
+								_context.next = 9;
+								break;
+
+							case 7:
+								_context.prev = 7;
+								_context.t0 = _context["catch"](0);
+
+							case 9:
+							case "end":
+								return _context.stop();
+						}
+					}
+				}, _callee, this, [[0, 7]]);
+			}));
+
+			function showLang() {
+				return _ref.apply(this, arguments);
+			}
+
+			return showLang;
+		}(),
+		upfateLanguage: function () {
+			var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+				var isValid, name, lang;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+					while (1) {
+						switch (_context2.prev = _context2.next) {
+							case 0:
+								_context2.prev = 0;
+								_context2.next = 3;
+								return this.$validator.validateAll();
+
+							case 3:
+								isValid = _context2.sent;
+
+								if (!isValid) {
+									_context2.next = 10;
+									break;
+								}
+
+								name = this.name;
+								_context2.next = 8;
+								return __WEBPACK_IMPORTED_MODULE_1__api_Languages__["a" /* default */].updateLang({
+									name: name
+								}, this.landId);
+
+							case 8:
+								lang = _context2.sent;
+
+								if (lang.status === 200) {
+									this.$notify({
+										group: "foo",
+										title: "Update Language",
+										text: "Update Language",
+										duration: 8000,
+										speed: 500
+									});
+									this.$router.push({ name: "LanguagePage" });
+								}
+
+							case 10:
+								_context2.next = 16;
+								break;
+
+							case 12:
+								_context2.prev = 12;
+								_context2.t0 = _context2["catch"](0);
+
+								if (_context2.t0) {
+									this.err = "Name or email must be unique";
+								}
+								this.getErrors(_context2.t0);
+
+							case 16:
+							case "end":
+								return _context2.stop();
+						}
+					}
+				}, _callee2, this, [[0, 12]]);
+			}));
+
+			function upfateLanguage() {
+				return _ref2.apply(this, arguments);
+			}
+
+			return upfateLanguage;
+		}()
+	}
+});
 
 /***/ })
 /******/ ]);

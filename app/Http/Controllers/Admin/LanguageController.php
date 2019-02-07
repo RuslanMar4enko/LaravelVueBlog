@@ -18,6 +18,11 @@ class LanguageController extends Controller
     return $language->latest()->get();
   }
 
+  public function show(Language $language, $id)
+  {
+    return CRUD::show($language, $id);
+  }
+
   /**
    * @param Language $language
    * @param LanguageRequest $request

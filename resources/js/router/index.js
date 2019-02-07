@@ -74,7 +74,7 @@ const routes = [
 	},
 
 	{
-		path: "/admin/language/update",
+		path: "/admin/language/update/:id",
 		name: "UpdateLangPage",
 		component: UpdateLangPage,
 		meta: {requiresAuth: true}

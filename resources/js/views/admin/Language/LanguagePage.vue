@@ -17,7 +17,7 @@
           <td>
             <span @click="deleteLang(item.id)" class="fa fa-trash actions-icons delete-action"
                   aria-hidden="true"></span>
-            <span class="fa fa-pencil-square actions-icons update-action" aria-hidden="true"></span>
+            <router-link :to="{name: 'UpdateLangPage', params: { id: item.id }}"><span class="fa fa-pencil-square actions-icons update-action" aria-hidden="true"></span></router-link>
           </td>
         </tr>
         </tbody>
