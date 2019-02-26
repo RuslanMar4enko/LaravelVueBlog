@@ -25,6 +25,7 @@
           </router-link>
         </li>
         <li><router-link :to="{ name: 'CategoriesPage'}"><i class="fa fa-th"></i><span>Category</span></router-link></li>
+        <li><router-link :to="{ name: 'ColorsPage'}"><i class="fa fa-globe"></i><span>Colors</span></router-link></li>
         <li><a><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
         <li><a @click="logout"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>

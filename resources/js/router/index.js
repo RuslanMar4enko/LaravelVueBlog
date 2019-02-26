@@ -13,6 +13,10 @@ import CategoriesPage from "../views/admin/Categories/CategoriesPage";
 import TreePageCategories from "../views/admin/Categories/TreePageCategories";
 import CreateCategoryPage from "../views/admin/Categories/CreateCategoryPage";
 import UpdateCategoryPage from "../views/admin/Categories/UpdateCategoryPage";
+import ColorsPage from "../views/admin/Colors/ColorsPage";
+import CreateColorsPage from "../views/admin/Colors/CreateColorsPage";
+import UpdateColorsPage from "../views/admin/Colors/UpdateColorsPage";
+import MapPage from "../views/MapPage.vue";
 
 Vue.use(VueRouter);
 
@@ -107,6 +111,34 @@ const routes = [
 		component: UpdateCategoryPage,
 		meta: {requiresAuth: true}
 	},
+
+	{
+		path: "/admin/colors",
+		name: "ColorsPage",
+		component: ColorsPage,
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/admin/colors/create",
+		name: "CreateColorsPage",
+		component: CreateColorsPage,
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/admin/colors/update/:id",
+		name: "UpdateColorsPage",
+		component: UpdateColorsPage,
+		meta: {requiresAuth: true}
+	},
+
+	{
+		path: "/map",
+		name: "MapPage",
+		component: MapPage,
+	},
+
 
 ];
 

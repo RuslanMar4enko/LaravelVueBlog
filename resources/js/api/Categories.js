@@ -22,7 +22,7 @@ export default {
 		return response;
 	},
 	async showCategories(id) {
-		const response = await api.get(`/api/admin/categories/show/${id}`);
+		const response = await api.get(`/api/admin/categories/${id}`);
 		return response;
 	},
 	async updateCategories(payload, id) {

@@ -19,9 +19,13 @@ class CategoryController extends Controller
     return $category->select('id', 'language', 'name', 'parent_id')->paginate(10);
   }
 
-  public function show(Category $category, $id)
+  /**
+   * @param Category $category
+   * @return Category
+   */
+  public function show(Category $category)
   {
-    return CRUD::show($category, $id);
+    return $category;
   }
 
   /**
@@ -38,12 +42,11 @@ class CategoryController extends Controller
   /**
    * @param Category $category
    * @param CategoryRequest $request
-   * @param $id
    * @return mixed
    */
-  public function update(Category $category, CategoryRequest $request, $id)
+  public function update(Category $category, CategoryRequest $request)
   {
-    return CRUD::update($category, $request, $id);
+    return CRUD::update($category, $request);
   }
 
   /**

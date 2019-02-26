@@ -25,7 +25,9 @@ class CreateProductsTable extends Migration
             $table->string('brand');
             $table->text('description');
             $table->integer('views')->default(1);
+            $table->string('image');
             $table->boolean('is_new')->default(0);
+            $table->string('language');
             $table->timestamps();
         });
     }
