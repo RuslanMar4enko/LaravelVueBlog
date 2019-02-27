@@ -22,9 +22,10 @@ mix.webpackConfig({
 				exclude: /node_modules/
 			}
 		]
-	}
+	},
 });
 
 
-mix.js("resources/js/app.js", "public/js")
+mix.js("resources/js/entry-client.js", "public/js")
+	.js("resources/js/entry-server.js", "public/js")
 	.sass("resources/sass/app.scss", "public/css");

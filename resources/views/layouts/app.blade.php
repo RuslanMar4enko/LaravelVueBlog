@@ -19,6 +19,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    {!! $ssr !!}
+    {{--<script src="{{ asset('resources/js/entry-client.js') }}" type="text/javascript"></script>--}}
+    <script src="/js/entry-client.js'"></script>
 </body>
 </html>

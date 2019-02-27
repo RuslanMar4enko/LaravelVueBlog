@@ -32,11 +32,11 @@ Vue.use(VueSweetalert2);
 
 import App from "./views/App.vue";
 
-new Vue({
-	router,
-	store,
-	i18n,
-	el: "#app",
-	template: "<App/>",
-	components: { App },
-});
+export function createApp() {
+	new Vue({
+		router,
+		store,
+		i18n,
+		render: h => h(App)
+	});
+}
